@@ -213,8 +213,8 @@ export function FloatingActionBar({
   let extraActions: any[] = [];
 
   if (mode === 'vacancy') {
-    visibleActions = vacancyActions.slice(0, 3);
-    extraActions = [...vacancyActions.slice(3), ...generalActions];
+    visibleActions = vacancyActions.slice(0, 4);
+    extraActions = [...vacancyActions.slice(4), ...generalActions];
   } else {
     visibleActions = generalActions.slice(0, 4);
     extraActions = generalActions.slice(4);
