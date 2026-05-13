@@ -73,7 +73,7 @@ export function FloatingActionBar({
 
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const submenuTriggerRef = React.useRef<HTMLDivElement>(null);
+  const submenuRef = React.useRef<HTMLDivElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -213,8 +213,8 @@ export function FloatingActionBar({
   let extraActions: any[] = [];
 
   if (mode === 'vacancy') {
-    visibleActions = vacancyActions.slice(0, 4);
-    extraActions = [...vacancyActions.slice(4), ...generalActions];
+    visibleActions = vacancyActions.slice(0, 3);
+    extraActions = [...vacancyActions.slice(3), ...generalActions];
   } else {
     visibleActions = generalActions.slice(0, 4);
     extraActions = generalActions.slice(4);
@@ -227,7 +227,8 @@ export function FloatingActionBar({
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node) &&
         buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
+        !buttonRef.current.contains(event.target as Node) &&
+        !(submenuRef.current && submenuRef.current.contains(event.target as Node))
       ) {
         setIsDropdownOpen(false);
         setIsSubmenuOpen(false);
@@ -310,8 +311,10 @@ export function FloatingActionBar({
           }
         }}
         className={cn(
-          "shadow-2xl backdrop-blur-xl border transition-colors duration-300 overflow-hidden",
-          !isMinimized ? "border-gray-700/50 bg-gray-900 inline-flex" : "border-gray-600/30 cursor-pointer hover:bg-gray-700"
+          "shadow-2xl backdrop-blur-xl border transition-colors duration-300",
+          !isMinimized 
+            ? "border-gray-700/50 bg-gray-900 inline-flex overflow-visible" 
+            : "border-gray-600/30 cursor-pointer hover:bg-gray-700 overflow-hidden"
         )}
       >
         <AnimatePresence>
@@ -369,7 +372,10 @@ export function FloatingActionBar({
                     ref={buttonRef}
                     variant="ghost"
                     size="sm"
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsDropdownOpen(!isDropdownOpen);
+                    }}
                     className="h-auto flex-col gap-0.5 px-1 py-1.5 text-gray-300 hover:text-white hover:bg-gray-800 w-[80px] flex-shrink-0"
                   >
                     <MoreHorizontal className="w-4 h-4" />
@@ -431,11 +437,13 @@ export function FloatingActionBar({
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           className="fixed bg-gray-900 border border-gray-700 shadow-2xl rounded-lg backdrop-blur-sm bg-opacity-95 w-72 max-h-[70vh] overflow-y-auto z-[100] py-2"
+          ref={submenuRef}
           style={{ 
             top: `${submenuPosition.top}px`, 
             left: `${submenuPosition.left}px` 
           }}
           onMouseDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between px-3 py-1.5 mb-1 border-b border-gray-800">
             <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">Mover a etapa</div>
