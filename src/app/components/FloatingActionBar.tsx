@@ -267,11 +267,7 @@ export function FloatingActionBar({
     }
     
     setIsSubmenuOpen(!isSubmenuOpen);
-    if (!fromBar) {
-      // Si es desde el menú, no cerramos el dropdown principal aún
-    } else {
-      setIsDropdownOpen(false);
-    }
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -374,7 +370,9 @@ export function FloatingActionBar({
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setIsDropdownOpen(!isDropdownOpen);
+                      const willOpen = !isDropdownOpen;
+                      setIsDropdownOpen(willOpen);
+                      if (willOpen) setIsSubmenuOpen(false);
                     }}
                     className="h-auto flex-col gap-0.5 px-1 py-1.5 text-gray-300 hover:text-white hover:bg-gray-800 w-[80px] flex-shrink-0"
                   >
