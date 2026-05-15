@@ -1,0 +1,23 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide default dialog close button in import modal */
+[data-slot='dialog-content'].import-modal-content > [data-slot='dialog-close'] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Fallback: target by position as well */
+.import-modal-content button[class*='absolute'][class*='top-'][class*='right-'][class*='opacity'] {
+  display: none !important;
+}

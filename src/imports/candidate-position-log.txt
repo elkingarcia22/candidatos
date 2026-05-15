@@ -1,0 +1,281 @@
+sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:127 [Hydrated]
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 427.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 910.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 882.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 427.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 910.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 882.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 402.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 684.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 744.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 402.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 684.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 744.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 402.21875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 684.78125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 744.609375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 400.625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 686.375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 743.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 397.6875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 689.3125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 742.34375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 393.046875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 693.953125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 740.0234375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 386.28125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 700.71875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 736.640625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 376.984375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 710.015625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 731.9921875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 364.453125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 722.546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 725.7265625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 349.140625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 737.859375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 718.0703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 332
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 755
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 709.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​scroll<div id=​"candidate-content-area" class=​"max-w-4xl mx-auto p-8 pb-32">​<div class=​"space-y-6">​<div class=​"bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg border border-slate-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​<div class=​"bg-white rounded-lg border border-gray-200 p-6">​…​</div>​</div>​</div>​</div>​
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 314.734375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 772.265625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 700.8671875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 298.78125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 788.21875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 692.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 284.75
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 802.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 685.875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 272.71875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 814.28125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 679.859375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 262.453125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 824.546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 674.7265625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 253.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 833.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 670.3515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 246.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 840.75
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 666.625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 239.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 847.109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 663.4453125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 234.453125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 852.546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 660.7265625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 229.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 857.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 658.40625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 225.875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 861.125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 656.4375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 222.515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 864.484375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 654.7578125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 219.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 867.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 653.3515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 217.359375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 869.640625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 652.1796875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 215.421875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 871.578125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 651.2109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 213.875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 873.125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 650.4375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 212.671875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 874.328125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 649.8359375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 211.765625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 875.234375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 649.3828125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 211.15625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 875.84375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 649.078125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 876.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 648.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 876.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 648.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.609375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 875.390625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 648.3046875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.609375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 875.390625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 648.3046875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 870.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 645.5546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 210.109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 870.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 645.5546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 207.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 850.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 632.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 207.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 850.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 632.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 840.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 626.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 840.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 626.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.203125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 835.796875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 624.1015625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.203125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 835.796875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 624.1015625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 834.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 623.5546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 206.109375
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 834.890625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 623.5546875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 195.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 739.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 565.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 195.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 739.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 565.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 191.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 703.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 543.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 191.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 703.5
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 543.25
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 184
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 636
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 502
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 184
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 636
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 502
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 181.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 616.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 489.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 181.8125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 616.1875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 489.90625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 180.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 606.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 483.8515625
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719 🎯 CALCULANDO POSICIÓN:
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - Columna encontrada: <div id=​"candidate-center-column" class=​"flex-1 overflow-auto bg-gray-50">​…​</div>​scroll
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.left: 180.703125
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - rect.width: 606.296875
+b1b74edaa534ebcf393b3d8ebc68b057b5e3fde8.js:16719   - centerX calculado: 483.8515625
