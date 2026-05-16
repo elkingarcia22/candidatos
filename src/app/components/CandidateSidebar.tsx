@@ -129,7 +129,7 @@ export function CandidateSidebar({
             {generalSections
               .filter((item) => {
                 if (isEditMode) {
-                  return ['generalInfo', 'experience', 'education'].includes(item.id);
+                  return ['generalInfo', 'experience', 'education', 'documents'].includes(item.id);
                 }
                 return true;
               })

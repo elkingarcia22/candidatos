@@ -25,6 +25,7 @@ interface CandidateHeaderProps {
   onSerenaClick?: () => void;
   isDisabled?: boolean;
   isValentina?: boolean;
+  isNew?: boolean;
 }
 
 export function CandidateHeader({
@@ -36,7 +37,8 @@ export function CandidateHeader({
   onNext,
   onSerenaClick,
   isDisabled = false,
-  isValentina = false
+  isValentina = false,
+  isNew = false
 }: CandidateHeaderProps) {
   const hasPrevious = currentIndex > 1;
   const hasNext = currentIndex < totalCandidates;
@@ -101,6 +103,8 @@ export function CandidateHeader({
     }
   };
 
+  if (!candidate) return null;
+
   return (
     <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
       <div className="px-6 py-4">
@@ -114,11 +118,14 @@ export function CandidateHeader({
             <div className="relative flex-shrink-0">
               <Avatar className="w-16 h-16 ring-4 ring-white shadow-md">
                 <div className="w-full h-full bg-gradient-to-br from-gray-600 to-blue-600 flex items-center justify-center text-white text-xl font-semibold">
-                  {candidate.name
-                    .split(' ')
-                    .map((n) => n.charAt(0))
-                    .slice(0, 2)
-                    .join('')}
+                  {candidate.name?.trim() 
+                    ? candidate.name
+                      .split(' ')
+                      .filter(Boolean)
+                      .map((n) => n.charAt(0))
+                      .slice(0, 2)
+                      .join('')
+                    : '?'}
                 </div>
               </Avatar>
               {/* Status Indicator */}
@@ -129,11 +136,15 @@ export function CandidateHeader({
             <div className="flex-1 min-w-0 pt-0.5">
               {/* Name + Location Badge */}
               <div className="flex items-center gap-3 mb-3">
-                <h1 className="text-xl font-semibold text-gray-900">{candidate.name}</h1>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 rounded-full">
-                  <MapPin className="w-3.5 h-3.5 text-gray-600" />
-                  <span className="text-sm text-gray-700">{candidate.location}</span>
-                </div>
+                <h1 className="text-xl font-semibold text-gray-900">
+                  {isNew ? (candidate.name || 'Nuevo Candidato') : candidate.name}
+                </h1>
+                {candidate.location && (
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 rounded-full">
+                    <MapPin className="w-3.5 h-3.5 text-gray-600" />
+                    <span className="text-sm text-gray-700">{candidate.location}</span>
+                  </div>
+                )}
               </div>
 
               {/* Contact & Info Grid - 4 Columns */}
@@ -241,50 +252,53 @@ export function CandidateHeader({
 
           {/* Right Section: Navigation */}
           <div className="flex-shrink-0 pt-1 flex items-center gap-4">
-            {/* Serena IA Header Button */}
-            <Tooltip content="Análisis Serena IA" side="bottom">
-              <button 
-                onClick={() => onSerenaClick?.()}
-                className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-full transition-all group shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95"
-              >
-                <Sparkles className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
-                <span className="text-sm font-bold text-white">Serena IA</span>
-              </button>
-            </Tooltip>
-
-            <div className="flex items-center gap-1 px-2 py-1 bg-white rounded-lg border border-gray-200">
-              <Tooltip content="Anterior" side="bottom">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onPrevious}
-                  disabled={isDisabled || !hasPrevious}
-                  className="h-7 w-7 p-0 hover:bg-gray-100 disabled:opacity-30"
+            {!isNew && (
+              <Tooltip content="Análisis Serena IA" side="bottom">
+                <button 
+                  onClick={() => onSerenaClick?.()}
+                  className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-full transition-all group shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95"
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </Button>
+                  <Sparkles className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
+                  <span className="text-sm font-bold text-white">Serena IA</span>
+                </button>
               </Tooltip>
+            )}
 
-              <div className="text-center px-2">
-                <div className="text-xs font-medium text-gray-900 whitespace-nowrap">
-                  <span className="text-blue-600">{currentIndex}</span>
-                  <span className="text-gray-400 mx-0.5">/</span>
-                  <span className="text-gray-600">{totalCandidates}</span>
+            {!isNew && (
+              <div className="flex items-center gap-1 px-2 py-1 bg-white rounded-lg border border-gray-200">
+                <Tooltip content="Anterior" side="bottom">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onPrevious}
+                    disabled={isDisabled || !hasPrevious}
+                    className="h-7 w-7 p-0 hover:bg-gray-100 disabled:opacity-30"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                  </Button>
+                </Tooltip>
+
+                <div className="text-center px-2">
+                  <div className="text-xs font-medium text-gray-900 whitespace-nowrap">
+                    <span className="text-blue-600">{currentIndex}</span>
+                    <span className="text-gray-400 mx-0.5">/</span>
+                    <span className="text-gray-600">{totalCandidates}</span>
+                  </div>
                 </div>
-              </div>
 
-              <Tooltip content="Siguiente" side="bottom">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onNext}
-                  disabled={isDisabled || !hasNext}
-                  className="h-7 w-7 p-0 hover:bg-gray-100 disabled:opacity-30"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </Button>
-              </Tooltip>
-            </div>
+                <Tooltip content="Siguiente" side="bottom">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={onNext}
+                    disabled={isDisabled || !hasNext}
+                    className="h-7 w-7 p-0 hover:bg-gray-100 disabled:opacity-30"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </Button>
+                </Tooltip>
+              </div>
+            )}
             
             {/* Close Button */}
             <Tooltip content={isDisabled ? "Guarda los cambios primero" : "Cerrar"} side="bottom">

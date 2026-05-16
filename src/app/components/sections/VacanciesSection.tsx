@@ -30,6 +30,7 @@ interface VacanciesSectionProps {
   isValentina?: boolean;
   isAndres?: boolean;
   onEditProfile?: () => void;
+  forceSummary?: boolean;
 }
 
 export function VacanciesSection({ 
@@ -44,19 +45,23 @@ export function VacanciesSection({
   onVacancySelect,
   isValentina,
   isAndres,
-  onEditProfile
+  onEditProfile,
+  forceSummary
 }: VacanciesSectionProps) {
   const [selectedVacancyId, setSelectedVacancyId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const activeApp = applications?.find(app => app.status === 'active') || applications?.[0];
-    if (activeApp) {
-      setSelectedVacancyId(activeApp.id);
-    } else {
-      setSelectedVacancyId(null);
+    if (forceSummary) {
+      if (selectedVacancyId !== null) setSelectedVacancyId(null);
+      return;
     }
-  }, [candidate?.id]);
+    const activeApp = applications?.find(app => app.status === 'active') || applications?.[0];
+    const targetId = activeApp?.id || null;
+    if (selectedVacancyId !== targetId) {
+      setSelectedVacancyId(targetId);
+    }
+  }, [candidate?.id, forceSummary, applications, selectedVacancyId]);
 
   React.useEffect(() => {
     if (onVacancySelect) {
