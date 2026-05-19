@@ -4221,9 +4221,6 @@ export const candidatesData: CandidateData[] = [
     age: 29,
     location: 'Medellín, Colombia',
     avatar: 'JV',
-    currentStage: 'serena-ai',
-    status: 'rejected',
-    appliedDate: '2026-02-22',
     expectedSalary: '$8.000.000 - $9.500.000 COP',
     availability: '3 semanas',
     yearsExperience: 5,
@@ -4239,8 +4236,6 @@ export const candidatesData: CandidateData[] = [
     willingToRelocate: true,
     interestedLocations: ['Bogotá', 'Medellín', 'Remote'],
     description: 'Product Designer Senior con experiencia en productos de e-commerce y delivery a gran escala. Experto en optimización de flujos de búsqueda y descubrimiento de productos mediante A/B testing y análisis de comportamiento de usuario. Enfocado en la excelencia visual y la consistencia sistémica.',
-    matchScore: 84,
-    confidence: 'high',
     experience: [
       {
         id: 'exp-014-001',
@@ -4298,11 +4293,6 @@ export const candidatesData: CandidateData[] = [
         }
       ]
     },
-    scores: {
-      cvScore: 84,
-      psychometricScore: 81,
-      serenaScore: 68
-    },
     documents: [
       { id: 'doc-014-1', name: 'Juan_Camilo_Vasquez_CV.pdf', type: 'PDF', size: '1.5 MB', uploadedDate: '2026-02-22', uploadedBy: 'Juan Camilo Vásquez' },
       { id: 'doc-014-2', name: 'Cornershop_Recommendation.pdf', type: 'PDF', size: '0.9 MB', uploadedDate: '2026-02-22', uploadedBy: 'Juan Camilo Vásquez' }
@@ -4313,7 +4303,24 @@ export const candidatesData: CandidateData[] = [
       'Capacidad analítica sobre el promedio',
       'Buen manejo de diseño sistémico y componentes complejos'
     ],
-    rejectionReason: 'Score de Serena AI por debajo del umbral. Mostró debilidades en pensamiento sistémico y arquitectura de información.'
+    applications: [
+      {
+        id: 'app-014-1',
+        jobTitle: 'Product Designer Senior',
+        jobLocation: 'Medellín, Colombia',
+        currentStage: 'serena-ai',
+        status: 'rejected',
+        appliedDate: '2026-02-22',
+        matchScore: 84,
+        confidence: 'high',
+        scores: {
+          cvScore: 84,
+          psychometricScore: 81,
+          serenaScore: 68
+        },
+        rejectionReason: 'Score de Serena AI por debajo del umbral. Mostró debilidades en pensamiento sistémico y arquitectura de información.'
+      }
+    ]
   },
 
   // ====== ETAPA 2: PSICOMÉTRICO (2 ACTIVOS, 2 RECHAZADOS) ======

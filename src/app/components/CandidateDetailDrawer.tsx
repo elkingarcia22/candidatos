@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { SerenaIAPanel } from './SerenaIAPanel';
 import { CandidateHeader } from './CandidateHeader';
@@ -73,11 +73,23 @@ export function CandidateDetailDrawer({
     setInsideVacancy 
   } = useOnboarding();
 
+  const lastIsInsideVacancyPropRef = useRef<boolean | undefined>(undefined);
+  const lastCandidateIdRef = useRef<string | null>(null);
+  const prevActiveSectionRef = useRef<string | null>(null);
+
   useEffect(() => {
-    if (isInsideVacancyProp !== undefined && isInsideVacancyProp !== isInsideVacancy) {
-      setInsideVacancy(isInsideVacancyProp);
+    const candidateChanged = lastCandidateIdRef.current !== candidateId;
+    const propChanged = lastIsInsideVacancyPropRef.current !== isInsideVacancyProp;
+
+    if (candidateChanged || propChanged) {
+      lastCandidateIdRef.current = candidateId;
+      lastIsInsideVacancyPropRef.current = isInsideVacancyProp;
+
+      if (isInsideVacancyProp !== undefined) {
+        setInsideVacancy(isInsideVacancyProp);
+      }
     }
-  }, [isInsideVacancyProp, isInsideVacancy, setInsideVacancy]);
+  }, [candidateId, isInsideVacancyProp, setInsideVacancy]);
   const [triggerDocumentUpload, setTriggerDocumentUpload] = useState(false);
   const [isSectionEditing, setIsSectionEditing] = useState(false);
   const [activeApplicationId, setActiveApplicationId] = useState<string | null>(initialApplicationId || null);
@@ -108,15 +120,18 @@ export function CandidateDetailDrawer({
     } else {
       // Al abrir un candidato existente, asegurarnos de que el modo edición esté apagado
       setEditMode(false);
+      setActiveApplicationId(initialApplicationId || null);
       
       // Si recibimos un ID de aplicación, ir directamente a la sección de vacantes
       if (initialApplicationId) {
         setActiveSection('vacancies');
+        setInsideVacancy(true);
       } else {
         setActiveSection('generalInfo');
+        setInsideVacancy(false);
       }
     }
-  }, [isNewCandidate, candidateId, initialApplicationId, setActiveSection, setEditMode]);
+  }, [isNewCandidate, candidateId, initialApplicationId, setActiveSection, setEditMode, setInsideVacancy, setActiveApplicationId]);
   
   
   // Estado para comentarios compartido entre StagesSection y ActivityHubPanel
@@ -453,13 +468,18 @@ export function CandidateDetailDrawer({
     }
   }, [candidateId]);
 
-  // Set default active application when candidate changes
+  // Set default active application when candidate changes.
+  // Priority: initialApplicationId (from popover click) > first active app > null
   useEffect(() => {
     if (mockCandidate && mockCandidate.applications && mockCandidate.applications.length > 0) {
-      if (initialApplicationId && mockCandidate.applications.some((app: any) => app.id === initialApplicationId)) {
-        setActiveApplicationId(initialApplicationId);
-      } else if (!activeApplicationId || !mockCandidate.applications.some((app: any) => app.id === activeApplicationId)) {
-        setActiveApplicationId(mockCandidate.applications[0].id);
+      if (initialApplicationId) {
+        // Always honor an explicitly selected application ID
+        const matchingApp = mockCandidate.applications.find((app: any) => app.id === initialApplicationId);
+        setActiveApplicationId(matchingApp ? initialApplicationId : null);
+      } else {
+        // Default: select the first active application (or null if none)
+        const activeApp = mockCandidate.applications.find((app: any) => app.status === 'active');
+        setActiveApplicationId(activeApp ? activeApp.id : null);
       }
     } else {
       setActiveApplicationId(null);
@@ -516,6 +536,7 @@ export function CandidateDetailDrawer({
             isAndres={isAndres}
             onEditProfile={handleEditIdentification}
             forceSummary={!isInsideVacancy}
+            initialVacancyId={activeApplicationId}
           />
         );
       case 'experience':
@@ -570,9 +591,12 @@ export function CandidateDetailDrawer({
 
   // Resetear estados al cambiar de sección
   useEffect(() => {
-    setInsideVacancy(false);
+    if (prevActiveSectionRef.current === 'vacancies' && activeSection !== 'vacancies') {
+      setInsideVacancy(false);
+    }
+    prevActiveSectionRef.current = activeSection;
     setIsSectionEditing(false);
-  }, [activeSection]);
+  }, [activeSection, setInsideVacancy]);
 
   // Resetear isSectionEditing al salir de modo edición general
   useEffect(() => {

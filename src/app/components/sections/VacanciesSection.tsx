@@ -31,6 +31,7 @@ interface VacanciesSectionProps {
   isAndres?: boolean;
   onEditProfile?: () => void;
   forceSummary?: boolean;
+  initialVacancyId?: string | null;
 }
 
 export function VacanciesSection({ 
@@ -46,22 +47,35 @@ export function VacanciesSection({
   isValentina,
   isAndres,
   onEditProfile,
-  forceSummary
+  forceSummary,
+  initialVacancyId
 }: VacanciesSectionProps) {
-  const [selectedVacancyId, setSelectedVacancyId] = useState<string | null>(null);
+  const [selectedVacancyId, setSelectedVacancyId] = useState<string | null>(initialVacancyId || null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const lastCandidateIdRef = useRef<string | null>(null);
+  const lastInitialVacancyIdRef = useRef<string | null | undefined>(undefined);
 
   React.useEffect(() => {
     if (forceSummary) {
       if (selectedVacancyId !== null) setSelectedVacancyId(null);
       return;
     }
-    const activeApp = applications?.find(app => app.status === 'active') || applications?.[0];
-    const targetId = activeApp?.id || null;
-    if (selectedVacancyId !== targetId) {
+
+    const candidateChanged = lastCandidateIdRef.current !== candidate?.id;
+    const initialVacancyChanged = lastInitialVacancyIdRef.current !== initialVacancyId;
+
+    if (candidateChanged || initialVacancyChanged) {
+      lastCandidateIdRef.current = candidate?.id || null;
+      lastInitialVacancyIdRef.current = initialVacancyId;
+
+      const targetId = initialVacancyId || 
+                       applications?.find(app => app.status === 'active')?.id || 
+                       null;
+      
       setSelectedVacancyId(targetId);
     }
-  }, [candidate?.id, forceSummary, applications, selectedVacancyId]);
+  }, [candidate?.id, initialVacancyId, forceSummary, applications]);
 
   React.useEffect(() => {
     if (onVacancySelect) {
@@ -95,11 +109,18 @@ export function VacanciesSection({
     scrollRef.current.scrollLeft = scrollLeftState - walk;
   };
 
+  // Ordenar aplicaciones: las activas primero (debe estar antes de renderSummaryView)
+  const sortedApplications = applications ? [...applications].sort((a, b) => {
+    if (a.status === 'active' && b.status !== 'active') return -1;
+    if (a.status !== 'active' && b.status === 'active') return 1;
+    return 0;
+  }) : [];
+
   // Sub-componente: Vista de Historial / Resumen
   const renderSummaryView = () => {
     const [selectedStageDetailId, setSelectedStageDetailId] = useState<string | null>(null);
-    const activeCount = applications.filter(app => app.status === 'active').length;
-    const totalCount = applications.length;
+    const activeCount = sortedApplications.filter(app => app.status === 'active').length;
+    const totalCount = sortedApplications.length;
 
     const getStatusText = (status: string) => {
       switch (status) {
@@ -182,7 +203,7 @@ export function VacanciesSection({
             </div>
 
             <div className="p-4 space-y-3">
-              {applications.map(app => {
+              {sortedApplications.map(app => {
                 const isBlocked = app.status === 'active' && !!app.blocker;
                 const styles = getStatusStyles(app.status, isBlocked);
                 return (
@@ -270,12 +291,7 @@ export function VacanciesSection({
     );
   };
 
-  // Ordenar aplicaciones: las activas primero
-  const sortedApplications = applications ? [...applications].sort((a, b) => {
-    if (a.status === 'active' && b.status !== 'active') return -1;
-    if (a.status !== 'active' && b.status === 'active') return 1;
-    return 0;
-  }) : [];
+  // sortedApplications is already declared above renderSummaryView
 
   return (
     <div className="space-y-6">
