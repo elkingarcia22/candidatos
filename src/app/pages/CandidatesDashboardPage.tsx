@@ -43,6 +43,7 @@ import { candidatesData } from '../data/candidatesData';
 import { Drawer } from '../components/ui/drawer';
 import { CandidateDetailDrawer } from '../components/CandidateDetailDrawer';
 import { SerenaIAPanel } from '../components/SerenaIAPanel';
+import { MainMenuSidebar } from '../components/MainMenuSidebar';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -166,6 +167,7 @@ function Combobox({ value, onValueChange, options, placeholder, searchPlaceholde
 export function CandidatesDashboardPage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
   const [candidatesList, setCandidatesList] = useState(candidatesData);
   
@@ -382,106 +384,16 @@ export function CandidatesDashboardPage() {
   };
 
   return (
-    <div className="h-screen bg-gray-50 font-sans overflow-hidden text-gray-900">
+    <div className="h-screen bg-gray-50 font-sans overflow-hidden text-gray-900 flex flex-row">
+      <MainMenuSidebar />
       {/* Centered Wrapper for the entire dashboard content */}
-      <div className="max-w-[1600px] mx-auto h-full flex flex-row p-6 lg:p-10 gap-6 lg:gap-10 overflow-hidden relative">
+      <div className="flex-1 max-w-[1600px] mx-auto h-full flex flex-row p-6 lg:p-10 gap-6 lg:gap-10 overflow-hidden relative">
         {/* Main Content Area */}
         <div className={cn(
           "flex-1 flex flex-col min-w-0 transition-all duration-500 ease-in-out h-full overflow-hidden",
           isSerenaOpen ? "opacity-95" : "opacity-100"
         )}>
-          {/* Header Section */}
-          <header className="flex-shrink-0 bg-transparent mb-8">
-            <div className="flex items-start justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 tracking-tight mb-2">Mis candidatos</h1>
-                <p className="text-sm text-gray-500">Gestiona y haz seguimiento a los candidatos de tu empresa desde un solo panel centralizado.</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button 
-                  onClick={() => {
-                    setSerenaMode('global');
-                    setIsSerenaOpen(!isSerenaOpen);
-                  }}
-                  className="h-10 px-6 rounded-full font-semibold text-xs transition-all flex items-center gap-2 shadow-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 text-white hover:scale-105 shadow-indigo-100"
-                >
-                  <Sparkles className={cn("w-4 h-4", !isSerenaOpen && "animate-pulse")} />
-                  Serena IA
-                </Button>
 
-                <div className="p-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-full group transition-all hover:shadow-lg hover:shadow-indigo-100">
-                  <Button
-                    onClick={() => {
-                      setSerenaMode('search');
-                      setIsSerenaOpen(true);
-                      setSearchTrigger(prev => prev + 1);
-                    }}
-                    variant="ghost"
-                    className="bg-white hover:bg-transparent text-gray-600 font-semibold text-xs h-[40px] px-6 transition-all rounded-full flex items-center gap-2 relative overflow-hidden group-hover:text-white"
-                  >
-                    <Search className="w-4 h-4 text-blue-500 group-hover:text-white transition-colors" />
-                    <span className="group-hover:text-white transition-colors tracking-tight">Buscar Candidatos IA</span>
-                  </Button>
-                </div>
-
-                <div className="w-px h-6 bg-gray-200 mx-1" />
-
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button 
-                      className="h-10 px-6 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-xl flex items-center gap-2 shadow-lg shadow-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      <Plus className="w-4 h-4" />
-                      Agregar candidato
-                      <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-1" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-72 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-gray-100 bg-white">
-                    <DropdownMenuItem
-                      onClick={() => setSelectedCandidateId('new')}
-                      className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
-                        <UserPlus className="w-5 h-5 text-gray-400" />
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-semibold text-gray-900">Creación manual</span>
-                        <p className="text-[10px] text-gray-500 font-medium">Registra un perfil individualmente.</p>
-                      </div>
-                    </DropdownMenuItem>
-
-                    <div className="h-px bg-gray-100 my-1.5 mx-2" />
-
-                    <DropdownMenuItem
-                      onClick={() => setIsImportModalOpen(true)}
-                      className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
-                        <FileUp className="w-5 h-5 text-gray-400" />
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-semibold text-gray-900">Importar CV</span>
-                        <p className="text-[10px] text-gray-500 font-medium">Extrae datos de CVs con nuestra IA.</p>
-                      </div>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      onClick={() => setIsBulkImportModalOpen(true)}
-                      className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
-                        <Table2 className="w-5 h-5 text-gray-400" />
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-semibold text-gray-900">Importar CSV o XLMS</span>
-                        <p className="text-[10px] text-gray-500 font-medium">Carga masiva desde hojas de cálculo.</p>
-                      </div>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
-          </header>
 
         {/* Scrollable Body Section */}
         <main className="flex-1 flex flex-col min-h-0 relative">
@@ -517,39 +429,147 @@ export function CandidatesDashboardPage() {
             {/* Unified Dashboard Block (Filters + Table) */}
             <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm flex flex-col flex-1 min-h-0 relative">
               {/* Sticky Filter Bar */}
-              <div className="shrink-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 p-6 rounded-t-[32px] h-[92px]">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input 
-                      type="text" 
-                      placeholder="Buscar por nombre, correo o cargo..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all hover:bg-gray-100/50"
-                    />
+              <div className="shrink-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 p-6 rounded-t-[32px]">
+                <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
+                  {/* Left Side: Title and count */}
+                  <div className="flex flex-col gap-1">
+                    <h2 className="text-[22px] font-bold text-gray-900 tracking-tight">Mis candidatos</h2>
+                    <p className="text-[13px] text-gray-500 font-medium">{filteredCandidates.length} candidatos encontrados</p>
                   </div>
+
+                  {/* Right Side: Tools & Actions */}
                   <div className="flex items-center gap-3">
-                    <Button variant="outline" className="rounded-xl border-gray-200 text-gray-600 gap-2 h-11 px-5 hover:bg-gray-50 transition-all font-semibold text-xs">
-                      <Download className="w-4 h-4" /> Exportar
-                    </Button>
-                    <div className="w-px h-6 bg-gray-100 mx-1" />
+                    {/* Search Input */}
+                    <div className={cn("relative transition-all duration-300 ease-in-out flex items-center justify-end", isSearchExpanded ? "w-[260px]" : "w-9")}>
+                      {!isSearchExpanded ? (
+                        <Tooltip content="Buscar candidatos">
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => setIsSearchExpanded(true)}
+                            className="h-9 w-9 rounded-full text-gray-500 hover:bg-gray-100 transition-all shrink-0"
+                          >
+                            <Search className="w-4 h-4" />
+                          </Button>
+                        </Tooltip>
+                      ) : (
+                        <div className="relative w-full">
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                          <input 
+                            type="text" 
+                            placeholder="Buscar candidatos..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onBlur={() => { if (!searchQuery) setIsSearchExpanded(false); }}
+                            autoFocus
+                            className="w-full pl-9 pr-8 py-2 bg-gray-50/50 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all hover:bg-gray-100/50"
+                          />
+                          <button 
+                            onClick={() => { setIsSearchExpanded(false); setSearchQuery(''); }}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="w-px h-6 bg-gray-200 mx-1" />
+
+                    {/* Filter Icon Button */}
+                    <Tooltip content="Filtros">
+                      <Button 
+                        onClick={() => setIsFilterDrawerOpen(true)}
+                        variant="ghost" 
+                        size="icon"
+                        className={cn(
+                          "h-9 w-9 rounded-full text-gray-500 hover:bg-gray-100 transition-all relative",
+                          isFilterDrawerOpen && "bg-gray-100 text-gray-900",
+                          activeFiltersCount > 0 && "text-blue-600 bg-blue-50"
+                        )}
+                      >
+                        <Filter className="w-4 h-4" />
+                        {activeFiltersCount > 0 && (
+                          <span className="absolute top-1 right-1 w-2 h-2 bg-blue-600 rounded-full border border-white" />
+                        )}
+                      </Button>
+                    </Tooltip>
+
+                    {/* Export Button */}
+                    <Tooltip content="Exportar">
+                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-gray-500 hover:bg-gray-100 transition-all">
+                        <Download className="w-4 h-4" />
+                      </Button>
+                    </Tooltip>
+
+                    {/* Serena IA Button */}
                     <Button 
-                      onClick={() => setIsFilterDrawerOpen(true)}
-                      variant="outline" 
-                      className={cn(
-                        "rounded-xl border-gray-200 text-gray-600 gap-2 h-11 px-5 transition-all font-semibold text-xs",
-                        isFilterDrawerOpen && "bg-gray-100 border-gray-300",
-                        activeFiltersCount > 0 && "border-blue-500 text-blue-600 bg-blue-50"
-                      )}
+                      onClick={() => {
+                        setSerenaMode('global');
+                        setIsSerenaOpen(!isSerenaOpen);
+                      }}
+                      className="h-9 px-4 rounded-full font-semibold text-[13px] transition-all flex items-center gap-2 shadow-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 text-white hover:scale-105"
                     >
-                      <Filter className="w-4 h-4" /> Filtros avanzados
-                      {activeFiltersCount > 0 && (
-                        <span className="ml-1 bg-blue-600 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">
-                          {activeFiltersCount}
-                        </span>
-                      )}
+                      <Sparkles className={cn("w-3.5 h-3.5", !isSerenaOpen && "animate-pulse")} />
+                      Serena IA
                     </Button>
+
+                    <div className="w-px h-6 bg-gray-200 mx-1" />
+
+                    {/* Agregar Candidato */}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button 
+                          className="h-9 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full flex items-center gap-2 shadow-sm transition-all text-[13px]"
+                        >
+                          Agregar candidato
+                          <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-0.5" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-72 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-gray-100 bg-white">
+                        <DropdownMenuItem
+                          onClick={() => setSelectedCandidateId('new')}
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
+                            <UserPlus className="w-5 h-5 text-gray-400" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-sm font-semibold text-gray-900">Creación manual</span>
+                            <p className="text-[10px] text-gray-500 font-medium">Registra un perfil individualmente.</p>
+                          </div>
+                        </DropdownMenuItem>
+
+                        <div className="h-px bg-gray-100 my-1.5 mx-2" />
+
+                        <DropdownMenuItem
+                          onClick={() => setIsImportModalOpen(true)}
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
+                            <FileUp className="w-5 h-5 text-gray-400" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-sm font-semibold text-gray-900">Importar CV</span>
+                            <p className="text-[10px] text-gray-500 font-medium">Extrae datos de CVs con nuestra IA.</p>
+                          </div>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                          onClick={() => setIsBulkImportModalOpen(true)}
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
+                            <Table2 className="w-5 h-5 text-gray-400" />
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-sm font-semibold text-gray-900">Importar CSV o XLMS</span>
+                            <p className="text-[10px] text-gray-500 font-medium">Carga masiva desde hojas de cálculo.</p>
+                          </div>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+
                   </div>
                 </div>
               </div>
@@ -559,14 +579,14 @@ export function CandidatesDashboardPage() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="bg-gray-50/50">
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Correo</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Vacantes activas</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Total de vacantes</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Última actividad</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-5 text-[11px] font-bold text-gray-500 uppercase tracking-wider text-right border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Acciones</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Correo</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Vacantes activas</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Total de vacantes</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Última actividad</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-right border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Acciones</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
@@ -735,22 +755,22 @@ export function CandidatesDashboardPage() {
         </main>
       </div>
 
-        {/* Serena IA Panel - Now inside the centered wrapper to respect margins and layout */}
-        <aside className={cn(
-          "flex-shrink-0 transition-all duration-500 ease-in-out h-full",
-          isSerenaOpen ? "w-[484px] opacity-100" : "w-0 overflow-hidden opacity-0"
-        )}>
-          <div className="h-full bg-white rounded-[32px] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden relative">
-            <SerenaIAPanel 
-              isOpen={isSerenaOpen} 
-              onClose={() => setIsSerenaOpen(false)}
-              mode={serenaMode}
-              allCandidates={enrichedCandidates}
-              searchTrigger={searchTrigger}
-            />
-          </div>
-        </aside>
-      </div>
+      {/* Serena IA Panel - Moved to the right side */}
+      <aside className={cn(
+        "flex-shrink-0 transition-all duration-500 ease-in-out h-full",
+        isSerenaOpen ? "w-[484px] opacity-100" : "w-0 overflow-hidden opacity-0"
+      )}>
+        <div className="h-full bg-white rounded-[32px] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden relative">
+          <SerenaIAPanel 
+            isOpen={isSerenaOpen} 
+            onClose={() => setIsSerenaOpen(false)}
+            mode={serenaMode}
+            allCandidates={enrichedCandidates}
+            searchTrigger={searchTrigger}
+          />
+        </div>
+      </aside>
+    </div>
 
       {/* Candidate Detail Drawer */}
       {selectedCandidateId && (
