@@ -33,7 +33,8 @@ import {
   Eye,
   UserPlus,
   FileUp,
-  Table2
+  Table2,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -169,6 +170,7 @@ export function CandidatesDashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
+  const [selectedApplicationId, setSelectedApplicationId] = useState<string | undefined>(undefined);
   const [candidatesList, setCandidatesList] = useState(candidatesData);
   
   // Estados de filtros
@@ -200,12 +202,31 @@ export function CandidatesDashboardPage() {
       const stageNumber = stageIndex !== -1 ? stageIndex + 1 : 0;
       const totalStages = stages.length;
       
+      // Info de vacantes
+      const activeVacanciesCount = c.applications?.filter(app => app.status === 'active').length || 0;
+      const totalVacanciesCount = c.applications?.length || 0;
+      
+      const vacanciesList = c.applications?.map(app => ({
+        id: app.id,
+        jobTitle: app.jobTitle,
+        stage: stages.find(s => s.id === app.currentStage)?.name || 'Sourcing',
+        status: app.status,
+        blocker: app.blocker
+      })) || [];
+      
+      const hasActionRequired = vacanciesList.some(app => app.blocker?.priority === 'high');
+
       let statusLabel = 'En proceso';
       let statusColor = 'text-blue-600';
       let dotColor = 'bg-blue-600';
       let statusKey = 'active';
       
-      if (mainApp?.status === 'hired') {
+      if (hasActionRequired || (idx % 4 === 0 && !mainApp)) { 
+        statusLabel = 'Acción requerida';
+        statusColor = 'text-orange-500';
+        dotColor = 'bg-orange-500';
+        statusKey = 'action_required';
+      } else if (mainApp?.status === 'hired') {
         statusLabel = 'Contratado';
         statusColor = 'text-green-600';
         dotColor = 'bg-green-600';
@@ -215,11 +236,6 @@ export function CandidatesDashboardPage() {
         statusColor = 'text-red-600';
         dotColor = 'bg-red-600';
         statusKey = 'rejected';
-      } else if (idx % 4 === 0 && !mainApp) { 
-        statusLabel = 'Acción requerida';
-        statusColor = 'text-orange-500';
-        dotColor = 'bg-orange-500';
-        statusKey = 'action_required';
       }
 
       // Origen simulado basado en el índice para variedad
@@ -233,16 +249,6 @@ export function CandidatesDashboardPage() {
         linkedin: 'LinkedIn',
         manual: 'Creado manualmente'
       };
-
-      // Info de vacantes
-      const activeVacanciesCount = c.applications?.filter(app => app.status === 'active').length || 0;
-      const totalVacanciesCount = c.applications?.length || 0;
-      
-      const vacanciesList = c.applications?.map(app => ({
-        jobTitle: app.jobTitle,
-        stage: stages.find(s => s.id === app.currentStage)?.name || 'Sourcing',
-        status: app.status
-      })) || [];
 
       // Actividad
       const lastActivityDate = mainApp?.appliedDate ? new Date(mainApp.appliedDate).toLocaleDateString('es-CO', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '15/05/2026';
@@ -260,6 +266,7 @@ export function CandidatesDashboardPage() {
         activeVacanciesCount,
         totalVacanciesCount,
         vacanciesList,
+        hasActionRequired,
         lastActivity: isRecentlyCreated ? 'Recién creado' : lastActivityDate,
         cedula: c.identificationNumber || `1.023.456.78${idx}`,
         location: c.location || `${c.city || 'Ciudad'}, ${c.country || 'País'}`,
@@ -338,8 +345,14 @@ export function CandidatesDashboardPage() {
   ];
 
   // Handlers para el Drawer
-  const handleCandidateClick = (id: string) => setSelectedCandidateId(id);
-  const handleCloseDrawer = () => setSelectedCandidateId(null);
+  const handleCandidateClick = (id: string, initialApplicationId?: string) => {
+    setSelectedCandidateId(id);
+    setSelectedApplicationId(initialApplicationId);
+  };
+  const handleCloseDrawer = () => {
+    setSelectedCandidateId(null);
+    setSelectedApplicationId(undefined);
+  };
   
   const currentCandidateIndex = enrichedCandidates.findIndex(c => c.id === selectedCandidateId);
   const handlePrevious = () => {
@@ -640,26 +653,60 @@ export function CandidatesDashboardPage() {
                             <span className="text-xs font-semibold text-gray-500">{candidate.email}</span>
                           </td>
                           <td className="px-6 py-5 text-center">
-                            <Tooltip content={
-                              <div className="flex flex-col gap-1.5 min-w-[260px] p-1">
-                                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-white/10 pb-1">Aplicaciones por vacante</p>
-                                {candidate.vacanciesList.length > 0 ? candidate.vacanciesList.map((app: any, i: number) => (
-                                  <div key={i} className="flex items-center justify-between gap-4 py-0.5">
-                                    <div className="flex items-center gap-2 flex-1 min-w-0">
-                                      <div className="w-1 h-1 rounded-full bg-gray-500 flex-shrink-0" />
-                                      <span className="font-bold truncate text-left" title={app.jobTitle}>{app.jobTitle}</span>
-                                    </div>
-                                    <span className="text-[10px] text-gray-400 whitespace-nowrap font-medium">
-                                      {app.stage}
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <div 
+                                  onClick={(e) => e.stopPropagation()}
+                                  className={cn(
+                                    "inline-flex items-center justify-center min-w-[32px] h-8 rounded-lg font-bold text-sm border cursor-pointer transition-all relative",
+                                    candidate.hasActionRequired 
+                                      ? "bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100" 
+                                      : "bg-blue-50 text-blue-700 border-blue-100 hover:bg-blue-100"
+                                  )}
+                                >
+                                  {candidate.activeVacanciesCount}
+                                  {candidate.hasActionRequired && (
+                                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
                                     </span>
-                                  </div>
-                                )) : <span className="text-gray-500 italic">Sin vacantes</span>}
-                              </div>
-                            }>
-                              <div className="inline-flex items-center justify-center min-w-[32px] h-8 rounded-lg bg-blue-50 text-blue-700 font-bold text-sm border border-blue-100 cursor-help hover:bg-blue-100 transition-all">
-                                {candidate.activeVacanciesCount}
-                              </div>
-                            </Tooltip>
+                                  )}
+                                </div>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-80 p-0" align="center" side="bottom" onClick={(e) => e.stopPropagation()}>
+                                <div className="flex flex-col p-2">
+                                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-100 pb-2 px-1">Aplicaciones por vacante</p>
+                                  {candidate.vacanciesList.length > 0 ? candidate.vacanciesList.map((app: any, i: number) => (
+                                    <div 
+                                      key={i} 
+                                      className={cn(
+                                        "flex flex-col gap-1 p-2 rounded-xl cursor-pointer transition-colors border border-transparent",
+                                        app.blocker?.priority === 'high' ? "bg-orange-50/50 hover:bg-orange-50 hover:border-orange-200" : "hover:bg-gray-50"
+                                      )}
+                                      onClick={() => {
+                                        handleCandidateClick(candidate.id, app.id);
+                                      }}
+                                    >
+                                      <div className="flex items-center justify-between gap-4">
+                                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                                          <div className={cn("w-1.5 h-1.5 rounded-full flex-shrink-0", app.blocker?.priority === 'high' ? "bg-orange-500" : "bg-gray-400")} />
+                                          <span className="font-bold text-sm truncate text-left text-gray-800" title={app.jobTitle}>{app.jobTitle}</span>
+                                        </div>
+                                        <span className="text-[10px] text-gray-500 whitespace-nowrap font-medium px-2 bg-white rounded-md border border-gray-100 py-0.5">
+                                          {app.stage}
+                                        </span>
+                                      </div>
+                                      {app.blocker?.priority === 'high' && (
+                                        <div className="pl-3.5 flex items-center gap-1.5 mt-0.5">
+                                          <AlertCircle className="w-3 h-3 text-orange-500" />
+                                          <span className="text-[10px] font-semibold text-orange-600">{app.blocker.reason}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )) : <span className="text-gray-500 italic px-2">Sin vacantes</span>}
+                                </div>
+                              </PopoverContent>
+                            </Popover>
                           </td>
                           <td className="px-6 py-5 text-center">
                             <span className="text-xs font-bold text-gray-500 bg-gray-50 px-2.5 py-1 rounded-full border border-gray-100">
@@ -789,6 +836,7 @@ export function CandidatesDashboardPage() {
             customCandidates={enrichedCandidates}
             onCreate={handleCandidateCreate}
             isInsideVacancy={false}
+            initialApplicationId={selectedApplicationId}
           />
         </Drawer>
       )}
