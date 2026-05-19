@@ -656,12 +656,12 @@ export function SerenaIAPanel({ isOpen, onClose, candidate, mode, allCandidates,
   return (
     <div 
       className={cn(
-        "h-full bg-white flex flex-col transition-all duration-300 ease-in-out overflow-hidden flex-shrink-0",
-        isOpen ? "w-[420px] opacity-100" : "w-0 opacity-0"
+        "h-full bg-white flex flex-col transition-all duration-300 ease-in-out overflow-hidden flex-shrink-0 w-full",
+        isOpen ? "opacity-100" : "opacity-0"
       )}
     >
       {/* Absolute container to ensure it doesn't push parent height if content overflows */}
-      <div className="flex flex-col h-full w-[420px] overflow-hidden">
+      <div className="flex flex-col h-full w-full overflow-hidden">
         {/* Header - Fixed height */}
         <div className="flex-shrink-0 px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-white z-10">
           <div className="flex items-center gap-2">

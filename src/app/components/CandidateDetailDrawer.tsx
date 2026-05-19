@@ -683,12 +683,18 @@ export function CandidateDetailDrawer({
         </div>
 
         {/* Serena IA Side Panel - Now anchored to the main container below header */}
-        <SerenaIAPanel 
-          isOpen={isSerenaActive} 
-          onClose={() => setSerenaActive(false)} 
-          candidate={mockCandidate} 
-          isValentina={isValentina}
-        />
+        <div 
+          className={`flex-shrink-0 transition-all duration-300 ease-in-out h-full overflow-hidden border-gray-200 ${
+            isSerenaActive ? "w-[400px] border-l" : "w-0 border-none"
+          }`}
+        >
+          <SerenaIAPanel 
+            isOpen={isSerenaActive} 
+            onClose={() => setSerenaActive(false)} 
+            candidate={mockCandidate} 
+            isValentina={isValentina}
+          />
+        </div>
       </div>
     </div>
   );
