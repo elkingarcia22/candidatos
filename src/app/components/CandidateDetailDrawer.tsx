@@ -45,6 +45,7 @@ interface CandidateDetailDrawerProps {
   customCandidates?: any[];
   onCreate?: (candidate: any) => void;
   isInsideVacancy?: boolean;
+  initialApplicationId?: string | null;
 }
 
 export function CandidateDetailDrawer({ 
@@ -56,7 +57,8 @@ export function CandidateDetailDrawer({
   currentIndex = 1,
   customCandidates,
   onCreate,
-  isInsideVacancy: isInsideVacancyProp
+  isInsideVacancy: isInsideVacancyProp,
+  initialApplicationId
 }: CandidateDetailDrawerProps) {
   const isNewCandidate = candidateId === 'new';
   const { 
@@ -78,10 +80,10 @@ export function CandidateDetailDrawer({
   }, [isInsideVacancyProp, isInsideVacancy, setInsideVacancy]);
   const [triggerDocumentUpload, setTriggerDocumentUpload] = useState(false);
   const [isSectionEditing, setIsSectionEditing] = useState(false);
-  const [activeApplicationId, setActiveApplicationId] = useState<string | null>(null);
+  const [activeApplicationId, setActiveApplicationId] = useState<string | null>(initialApplicationId || null);
   const [highlightedStageId, setHighlightedStageId] = useState<string | null>(null);
   
-  // Activar modo edición automáticamente si es un nuevo candidato
+  // Configuración inicial basada en el candidato y los parámetros recibidos
   useEffect(() => {
     if (isNewCandidate) {
       setEditMode(true);
@@ -103,8 +105,18 @@ export function CandidateDetailDrawer({
         skills: { technical: [], soft: [] },
         avatar: '?'
       });
+    } else {
+      // Al abrir un candidato existente, asegurarnos de que el modo edición esté apagado
+      setEditMode(false);
+      
+      // Si recibimos un ID de aplicación, ir directamente a la sección de vacantes
+      if (initialApplicationId) {
+        setActiveSection('vacancies');
+      } else {
+        setActiveSection('generalInfo');
+      }
     }
-  }, [isNewCandidate]);
+  }, [isNewCandidate, candidateId, initialApplicationId, setActiveSection, setEditMode]);
   
   
   // Estado para comentarios compartido entre StagesSection y ActivityHubPanel
@@ -444,13 +456,15 @@ export function CandidateDetailDrawer({
   // Set default active application when candidate changes
   useEffect(() => {
     if (mockCandidate && mockCandidate.applications && mockCandidate.applications.length > 0) {
-      if (!activeApplicationId || !mockCandidate.applications.some((app: any) => app.id === activeApplicationId)) {
+      if (initialApplicationId && mockCandidate.applications.some((app: any) => app.id === initialApplicationId)) {
+        setActiveApplicationId(initialApplicationId);
+      } else if (!activeApplicationId || !mockCandidate.applications.some((app: any) => app.id === activeApplicationId)) {
         setActiveApplicationId(mockCandidate.applications[0].id);
       }
     } else {
       setActiveApplicationId(null);
     }
-  }, [candidateId, mockCandidate, activeApplicationId]);
+  }, [candidateId, mockCandidate, initialApplicationId]);
 
   const activeApplication = mockCandidate?.applications?.find((app: any) => app.id === activeApplicationId) || mockCandidate?.applications?.[0];
 

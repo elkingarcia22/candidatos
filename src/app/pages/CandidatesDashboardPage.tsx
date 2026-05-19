@@ -358,11 +358,13 @@ export function CandidatesDashboardPage() {
   const handlePrevious = () => {
     if (currentCandidateIndex > 0) {
       setSelectedCandidateId(enrichedCandidates[currentCandidateIndex - 1].id);
+      setSelectedApplicationId(undefined);
     }
   };
   const handleNext = () => {
     if (currentCandidateIndex < enrichedCandidates.length - 1) {
       setSelectedCandidateId(enrichedCandidates[currentCandidateIndex + 1].id);
+      setSelectedApplicationId(undefined);
     }
   };
 
