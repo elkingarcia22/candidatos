@@ -597,6 +597,7 @@ export function CandidatesDashboardPage() {
                     <tr className="bg-gray-50/50">
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Celular</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Correo</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Vacantes</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
@@ -607,7 +608,7 @@ export function CandidatesDashboardPage() {
                   <tbody className="divide-y divide-gray-50">
                     {filteredCandidates.length === 0 ? (
                       <tr>
-                        <td colSpan={7} className="px-6 py-20 text-center">
+                        <td colSpan={8} className="px-6 py-20 text-center">
                           <div className="flex flex-col items-center justify-center text-gray-400">
                             <Users className="w-12 h-12 mb-4 opacity-20" />
                             <p className="text-sm font-semibold">No se encontraron candidatos</p>
@@ -650,6 +651,9 @@ export function CandidatesDashboardPage() {
                           </td>
                           <td className="px-6 py-5">
                             <span className="text-xs font-semibold text-gray-500">{candidate.cedula}</span>
+                          </td>
+                          <td className="px-6 py-5">
+                            <span className="text-xs font-semibold text-gray-500">{candidate.phone}</span>
                           </td>
                           <td className="px-6 py-5">
                             <span className="text-xs font-semibold text-gray-500">{candidate.email}</span>
