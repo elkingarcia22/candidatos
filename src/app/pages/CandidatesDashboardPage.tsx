@@ -746,8 +746,8 @@ export function CandidatesDashboardPage() {
                           </td>
                           <td className="px-6 py-5 text-center">
                             {candidate.origin === 'serena' ? (
-                              <span className="inline-flex p-[1.5px] rounded-lg bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)]">
-                                <span className="bg-white rounded-[6px] px-2.5 py-0.5 text-[10px] font-semibold text-gray-700 flex items-center gap-1">
+                              <span className="inline-flex p-[1.5px] rounded-lg overflow-hidden bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)]">
+                                <span className="bg-white rounded-[6.5px] px-2.5 py-0.5 text-[10px] font-semibold text-gray-700 flex items-center gap-1">
                                   <Sparkles className="w-3 h-3" />
                                   {candidate.originLabel}
                                 </span>
