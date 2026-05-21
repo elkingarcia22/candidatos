@@ -602,8 +602,8 @@ export function CandidatesDashboardPage() {
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Celular</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Correo</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Vacantes</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Estado vacante actual</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Última actividad</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-right border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Acciones</th>
@@ -654,8 +654,18 @@ export function CandidatesDashboardPage() {
                           <td className="px-6 py-5">
                             <span className="text-xs font-semibold text-gray-500">{candidate.phone}</span>
                           </td>
+                          <td className="px-6 py-5 text-center">
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 text-sm font-bold text-gray-700">
+                              {candidate.totalVacanciesCount}
+                            </span>
+                          </td>
                           <td className="px-6 py-5">
-                            <span className="text-xs font-semibold text-gray-500">{candidate.email}</span>
+                            {candidate.displayStage && (
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 text-[11px] font-semibold">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                                {candidate.displayStage}
+                              </span>
+                            )}
                           </td>
                           <td className="px-6 py-5 text-center">
                             <Popover
