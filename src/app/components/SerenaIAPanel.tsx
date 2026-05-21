@@ -963,7 +963,7 @@ export function SerenaIAPanel({ isOpen, onClose, candidate, mode, allCandidates,
             disabled={!chatInput.trim() || isTyping}
             className={cn(
               "absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all shadow-lg",
-              "bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)]",
+              "bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)]",
               "hover:scale-105 active:scale-95 disabled:opacity-40 disabled:scale-100 disabled:shadow-none"
             )}
           >

@@ -168,7 +168,7 @@ export function CandidateListPage() {
                   "flex items-center gap-2 px-4 py-1.5 rounded-full transition-all group",
                   isSerenaActive 
                     ? "bg-gray-800 text-white shadow-lg" 
-                    : "bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] text-white shadow-md hover:scale-105"
+                    : "bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)] text-white shadow-md hover:scale-105"
                 )}
               >
                 <Sparkles className="w-3.5 h-3.5" />

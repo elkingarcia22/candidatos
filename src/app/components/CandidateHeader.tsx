@@ -256,7 +256,7 @@ export function CandidateHeader({
               <Tooltip content="Análisis Serena IA" side="bottom">
                 <button 
                   onClick={() => onSerenaClick?.()}
-                  className="flex items-center gap-2 px-5 py-2 bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] rounded-full transition-all group shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95"
+                  className="flex items-center gap-2 px-5 py-2 bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)] rounded-full transition-all group shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95"
                 >
                   <Sparkles className="w-4 h-4 text-white group-hover:rotate-12 transition-transform" />
                   <span className="text-sm font-bold text-white">Serena IA</span>

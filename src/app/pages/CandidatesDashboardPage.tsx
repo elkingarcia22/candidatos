@@ -530,7 +530,7 @@ export function CandidatesDashboardPage() {
                         setSerenaMode('global');
                         setIsSerenaOpen(!isSerenaOpen);
                       }}
-                      className="h-9 px-4 rounded-full font-semibold text-[13px] transition-all flex items-center gap-2 shadow-sm bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] text-white hover:scale-105"
+                      className="h-9 px-4 rounded-full font-semibold text-[13px] transition-all flex items-center gap-2 shadow-sm bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)] text-white hover:scale-105"
                     >
                       <Sparkles className={cn("w-3.5 h-3.5", !isSerenaOpen && "animate-pulse")} />
                       Serena IA
