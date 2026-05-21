@@ -542,10 +542,10 @@ export function CandidatesDashboardPage() {
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button 
-                          className="h-9 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full flex items-center gap-2 shadow-sm transition-all text-[13px]"
+                          className="h-9 pl-4 pr-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full flex items-center gap-2 shadow-sm transition-all text-[13px]"
                         >
                           Agregar candidato
-                          <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-0.5" />
+                          <ChevronDown className="w-3.5 h-3.5 opacity-60" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-72 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-gray-100 bg-white">
@@ -645,14 +645,9 @@ export function CandidatesDashboardPage() {
                           className="hover:bg-gray-50 transition-colors cursor-pointer group"
                         >
                           <td className="px-6 py-5">
-                            <div className="flex items-center gap-4">
-                              <div className={cn("w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0 bg-blue-600")}>
-                                {candidate.avatar}
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{candidate.name}</span>
-                                <span className="text-[11px] text-gray-500 font-medium">{candidate.role}</span>
-                              </div>
+                            <div className="flex flex-col">
+                              <span className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{candidate.name}</span>
+                              <span className="text-[11px] text-gray-500 font-medium">{candidate.role}</span>
                             </div>
                           </td>
                           <td className="px-6 py-5">
