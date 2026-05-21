@@ -171,7 +171,6 @@ export function CandidatesDashboardPage() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
   const [selectedApplicationId, setSelectedApplicationId] = useState<string | undefined>(undefined);
-  const [activePopoverCandidateId, setActivePopoverCandidateId] = useState<string | null>(null);
   const [candidatesList, setCandidatesList] = useState(candidatesData);
   
   // Estados de filtros
@@ -666,93 +665,6 @@ export function CandidatesDashboardPage() {
                                 {candidate.displayStage}
                               </span>
                             )}
-                          </td>
-                          <td className="px-6 py-5 text-center">
-                            <Popover
-                              open={activePopoverCandidateId === candidate.id}
-                              onOpenChange={(open) => {
-                                if (open) {
-                                  setActivePopoverCandidateId(candidate.id);
-                                } else {
-                                  setActivePopoverCandidateId(null);
-                                }
-                              }}
-                            >
-                              <PopoverTrigger asChild>
-                                <div
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="inline-flex items-center gap-2 px-3 h-9 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer transition-all group"
-                                >
-                                  {/* Número total */}
-                                  <span className="text-sm font-bold text-gray-700 group-hover:text-gray-900">
-                                    {candidate.totalVacanciesCount}
-                                  </span>
-
-                                  {/* Badge: vacantes activas */}
-                                  {candidate.activeVacanciesCount > 0 && !candidate.hasActionRequired && (
-                                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold">
-                                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />
-                                      {candidate.activeVacanciesCount} activa{candidate.activeVacanciesCount !== 1 ? 's' : ''}
-                                    </span>
-                                  )}
-
-                                  {/* Badge: acción requerida */}
-                                  {candidate.hasActionRequired && (
-                                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-orange-50 text-orange-600 border border-orange-200 text-[10px] font-bold">
-                                      <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
-                                      </span>
-                                      Acción
-                                    </span>
-                                  )}
-                                </div>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-[440px] p-0" align="center" side="bottom" onClick={(e) => e.stopPropagation()}>
-                                <div className="flex flex-col p-2">
-                                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-100 pb-2 px-1">Aplicaciones por vacante</p>
-                                  {candidate.vacanciesList.length > 0 ? candidate.vacanciesList.map((app: any, i: number) => (
-                                    <div
-                                      key={i}
-                                      className={cn(
-                                        "flex flex-col gap-1 p-2 rounded-xl cursor-pointer transition-colors border border-transparent",
-                                        app.blocker?.priority === 'high' ? "bg-orange-50/50 hover:bg-orange-50 hover:border-orange-200" : "hover:bg-gray-50"
-                                      )}
-                                      onClick={() => {
-                                        handleCandidateClick(candidate.id, app.id);
-                                        setActivePopoverCandidateId(null);
-                                      }}
-                                    >
-                                      <div className="flex items-center justify-between gap-2">
-                                        <div className="flex items-center gap-2 flex-1 min-w-0">
-                                          <div className={cn("w-1.5 h-1.5 rounded-full flex-shrink-0", app.blocker?.priority === 'high' ? "bg-orange-500" : app.status === 'active' ? 'bg-blue-500' : 'bg-gray-300')} />
-                                          <span className="font-bold text-sm truncate text-left text-gray-800" title={app.jobTitle}>{app.jobTitle}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 flex-shrink-0">
-                                          <span className="text-[10px] text-gray-500 whitespace-nowrap font-medium px-2 bg-white rounded-md border border-gray-100 py-0.5">
-                                            {app.stage}
-                                          </span>
-                                          <span className={cn(
-                                            "text-[9px] font-bold px-1.5 py-0.5 rounded-md border uppercase tracking-wider",
-                                            app.status === 'active' && "bg-blue-50 text-blue-700 border-blue-100",
-                                            app.status === 'hired' && "bg-emerald-50 text-emerald-700 border-emerald-100",
-                                            app.status === 'rejected' && "bg-red-50 text-red-700 border-red-100"
-                                          )}>
-                                            {app.status === 'active' ? 'Activo' : app.status === 'hired' ? 'Contratado' : 'Descartado'}
-                                          </span>
-                                        </div>
-                                      </div>
-                                      {app.blocker?.priority === 'high' && (
-                                        <div className="pl-3.5 flex items-center gap-1.5 mt-0.5">
-                                          <AlertCircle className="w-3 h-3 text-orange-500" />
-                                          <span className="text-[10px] font-semibold text-orange-600">{app.blocker.reason}</span>
-                                        </div>
-                                      )}
-                                    </div>
-                                  )) : <span className="text-gray-500 italic px-2">Sin vacantes</span>}
-                                </div>
-                              </PopoverContent>
-                            </Popover>
                           </td>
                           <td className="px-6 py-5 text-center">
                             {candidate.origin === 'serena' ? (
