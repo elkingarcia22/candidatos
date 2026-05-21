@@ -556,7 +556,7 @@ export function CandidatesDashboardPage() {
                       <DropdownMenuContent align="end" className="w-72 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-gray-100 bg-white">
                         <DropdownMenuItem
                           onClick={() => setSelectedCandidateId('new')}
-                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 focus:bg-gray-50 transition-all group outline-none"
                         >
                           <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
                             <UserPlus className="w-5 h-5 text-gray-400" />
@@ -571,7 +571,7 @@ export function CandidatesDashboardPage() {
 
                         <DropdownMenuItem
                           onClick={() => setIsImportModalOpen(true)}
-                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 focus:bg-gray-50 transition-all group outline-none"
                         >
                           <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
                             <FileUp className="w-5 h-5 text-gray-400" />
@@ -584,7 +584,7 @@ export function CandidatesDashboardPage() {
 
                         <DropdownMenuItem
                           onClick={() => setIsBulkImportModalOpen(true)}
-                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 transition-all group outline-none"
+                          className="flex items-start gap-3.5 p-3.5 cursor-pointer rounded-xl hover:bg-gray-50 focus:bg-gray-50 transition-all group outline-none"
                         >
                           <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:shadow-sm transition-all border border-transparent group-hover:border-gray-100">
                             <Table2 className="w-5 h-5 text-gray-400" />
@@ -759,15 +759,15 @@ export function CandidatesDashboardPage() {
                                     e.stopPropagation();
                                     handleCandidateClick(candidate.id);
                                   }}
-                                  className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-blue-50 transition-colors group"
+                                  className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-blue-50 focus:bg-blue-50 transition-colors group"
                                 >
-                                  <Eye className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
-                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-blue-600">Ver detalle</span>
+                                  <Eye className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-focus:text-blue-600" />
+                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-blue-600 group-focus:text-blue-600">Ver detalle</span>
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-blue-50 transition-colors group">
-                                  <Edit3 className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
-                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-blue-600">Editar candidato</span>
+                                <DropdownMenuItem onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-blue-50 focus:bg-blue-50 transition-colors group">
+                                  <Edit3 className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-focus:text-blue-600" />
+                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-blue-600 group-focus:text-blue-600">Editar candidato</span>
                                 </DropdownMenuItem>
                               
                                 <div className="my-1 h-px bg-gray-100" />
@@ -777,7 +777,7 @@ export function CandidatesDashboardPage() {
                                   { icon: Mail, label: 'Enviar email' },
                                   { icon: FilePlus, label: 'Agregar documento' },
                                 ].map((item, idx) => (
-                                  <DropdownMenuItem key={idx} onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-lg hover:bg-gray-50">
+                                  <DropdownMenuItem key={idx} onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-lg hover:bg-gray-50 focus:bg-gray-50">
                                     <item.icon className="w-4 h-4 text-gray-400" />
                                     <span className="text-xs font-medium text-gray-600">{item.label}</span>
                                   </DropdownMenuItem>
