@@ -415,7 +415,7 @@ export function CandidatesDashboardPage() {
 
         {/* Scrollable Body Section */}
         <main className="flex-1 flex flex-col min-h-0 relative">
-          <div className="flex flex-col flex-1 min-h-0 space-y-8">
+          <div className="w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 space-y-8">
             {/* Stats Grid */}
             <div className="grid grid-cols-5 gap-3 shrink-0">
               {stats.map((stat) => {
