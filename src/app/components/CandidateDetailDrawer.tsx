@@ -46,6 +46,7 @@ interface CandidateDetailDrawerProps {
   onCreate?: (candidate: any) => void;
   isInsideVacancy?: boolean;
   initialApplicationId?: string | null;
+  initialSection?: string;
 }
 
 export function CandidateDetailDrawer({ 
@@ -58,7 +59,8 @@ export function CandidateDetailDrawer({
   customCandidates,
   onCreate,
   isInsideVacancy: isInsideVacancyProp,
-  initialApplicationId
+  initialApplicationId,
+  initialSection
 }: CandidateDetailDrawerProps) {
   const isNewCandidate = candidateId === 'new';
   const { 
@@ -126,12 +128,15 @@ export function CandidateDetailDrawer({
       if (initialApplicationId) {
         setActiveSection('vacancies');
         setInsideVacancy(true);
+      } else if (initialSection) {
+        setActiveSection(initialSection);
+        setInsideVacancy(false);
       } else {
         setActiveSection('generalInfo');
         setInsideVacancy(false);
       }
     }
-  }, [isNewCandidate, candidateId, initialApplicationId, setActiveSection, setEditMode, setInsideVacancy, setActiveApplicationId]);
+  }, [isNewCandidate, candidateId, initialApplicationId, initialSection, setActiveSection, setEditMode, setInsideVacancy, setActiveApplicationId]);
   
   
   // Estado para comentarios compartido entre StagesSection y ActivityHubPanel

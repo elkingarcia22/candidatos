@@ -171,6 +171,7 @@ export function CandidatesDashboardPage() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
   const [selectedApplicationId, setSelectedApplicationId] = useState<string | undefined>(undefined);
+  const [selectedSection, setSelectedSection] = useState<string | undefined>(undefined);
   const [candidatesList, setCandidatesList] = useState(candidatesData);
   
   // Estados de filtros
@@ -348,10 +349,17 @@ export function CandidatesDashboardPage() {
   const handleCandidateClick = (id: string, initialApplicationId?: string) => {
     setSelectedCandidateId(id);
     setSelectedApplicationId(initialApplicationId);
+    setSelectedSection(undefined);
+  };
+  const handleOpenApplications = (id: string) => {
+    setSelectedCandidateId(id);
+    setSelectedApplicationId(undefined);
+    setSelectedSection('vacancies');
   };
   const handleCloseDrawer = () => {
     setSelectedCandidateId(null);
     setSelectedApplicationId(undefined);
+    setSelectedSection(undefined);
   };
   
   const currentCandidateIndex = enrichedCandidates.findIndex(c => c.id === selectedCandidateId);
@@ -655,7 +663,7 @@ export function CandidatesDashboardPage() {
                           </td>
                           <td className="px-6 py-5 text-center">
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleCandidateClick(candidate.id, candidate.applications?.[0]?.id); }}
+                              onClick={(e) => { e.stopPropagation(); handleOpenApplications(candidate.id); }}
                               className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold text-gray-700 hover:text-gray-900 transition-all cursor-pointer"
                             >
                               {candidate.totalVacanciesCount}
@@ -663,13 +671,22 @@ export function CandidatesDashboardPage() {
                           </td>
                           <td className="px-6 py-5">
                             {candidate.displayStatus && (
-                              <span className={cn(
-                                "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold",
-                                candidate.statusKey === 'active' && "bg-blue-50 text-blue-700",
-                                candidate.statusKey === 'hired' && "bg-emerald-50 text-emerald-700",
-                                candidate.statusKey === 'rejected' && "bg-red-50 text-red-700",
-                                candidate.statusKey === 'action_required' && "bg-orange-50 text-orange-600"
-                              )}>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  const appId = candidate.statusKey === 'action_required'
+                                    ? candidate.vacanciesList?.find((v: any) => v.blocker?.priority === 'high')?.id
+                                    : candidate.applications?.[0]?.id;
+                                  handleCandidateClick(candidate.id, appId);
+                                }}
+                                className={cn(
+                                  "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold cursor-pointer hover:ring-2 transition-all",
+                                  candidate.statusKey === 'active' && "bg-blue-50 text-blue-700 hover:ring-blue-200",
+                                  candidate.statusKey === 'hired' && "bg-emerald-50 text-emerald-700 hover:ring-emerald-200",
+                                  candidate.statusKey === 'rejected' && "bg-red-50 text-red-700 hover:ring-red-200",
+                                  candidate.statusKey === 'action_required' && "bg-orange-50 text-orange-600 hover:ring-orange-200"
+                                )}
+                              >
                                 <span className={cn(
                                   "w-1.5 h-1.5 rounded-full",
                                   candidate.statusKey === 'active' && "bg-blue-500",
@@ -678,7 +695,7 @@ export function CandidatesDashboardPage() {
                                   candidate.statusKey === 'action_required' && "bg-orange-500"
                                 )} />
                                 {candidate.displayStatus}
-                              </span>
+                              </button>
                             )}
                           </td>
                           <td className="px-6 py-5 text-center">
@@ -812,6 +829,7 @@ export function CandidatesDashboardPage() {
             onCreate={handleCandidateCreate}
             isInsideVacancy={!!selectedApplicationId}
             initialApplicationId={selectedApplicationId}
+            initialSection={selectedSection}
           />
         </Drawer>
       )}
