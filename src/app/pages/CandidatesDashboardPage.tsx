@@ -404,18 +404,19 @@ export function CandidatesDashboardPage() {
   return (
     <div className="h-screen bg-gray-50 font-sans overflow-hidden text-gray-900 flex flex-row p-4 gap-4">
       <MainMenuSidebar />
-      {/* Centered Wrapper for the entire dashboard content */}
-      <div className="flex-1 h-full flex flex-row min-w-0 overflow-hidden relative">
-        {/* Main Content Area */}
-        <div className={cn(
-          "flex-1 flex flex-col min-w-0 transition-all duration-500 ease-in-out h-full overflow-hidden",
-          isSerenaOpen ? "opacity-95" : "opacity-100"
-        )}>
+      {/* Content centering wrapper: fills remaining space, centers child horizontally */}
+      <div className="flex-1 flex justify-center overflow-hidden h-full">
+        <div className="w-full h-full max-w-7xl flex flex-row">
+          {/* Main Content Area */}
+          <div className={cn(
+            "flex-1 flex flex-col min-w-0 transition-all duration-500 ease-in-out h-full overflow-hidden",
+            isSerenaOpen ? "opacity-95" : "opacity-100"
+          )}>
 
 
-        {/* Scrollable Body Section */}
-        <main className="flex-1 flex flex-col min-h-0 relative">
-          <div className="w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 space-y-8">
+          {/* Scrollable Body Section */}
+          <main className="flex-1 flex flex-col min-h-0 relative">
+            <div className="flex flex-col flex-1 min-h-0 space-y-8">
             {/* Stats Grid */}
             <div className="grid grid-cols-5 gap-3 shrink-0">
               {stats.map((stat) => {
@@ -856,6 +857,7 @@ export function CandidatesDashboardPage() {
           />
         </div>
       </aside>
+      </div>
     </div>
 
       {/* Candidate Detail Drawer */}
