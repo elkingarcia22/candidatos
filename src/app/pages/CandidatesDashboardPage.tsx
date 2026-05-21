@@ -668,7 +668,16 @@ export function CandidatesDashboardPage() {
                             </button>
                           </td>
                           <td className="px-6 py-5">
-                            <span className="text-xs font-semibold text-gray-500">{candidate.phone}</span>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigator.clipboard.writeText(candidate.phone);
+                                toast.success('Celular copiado', { position: 'bottom-center', duration: 1500 });
+                              }}
+                              className="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+                            >
+                              {candidate.phone}
+                            </button>
                           </td>
                           <td className="px-6 py-5 text-center">
                             <button
