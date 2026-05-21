@@ -660,7 +660,7 @@ export function CandidatesDashboardPage() {
                               onClick={(e) => {
                                 e.stopPropagation();
                                 navigator.clipboard.writeText(candidate.cedula);
-                                toast.success('Cédula copiada', { position: 'bottom-center', duration: 1500 });
+                                toast.success('Identificación copiada', { position: 'bottom-center', duration: 1500 });
                               }}
                               className="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                             >
