@@ -14,11 +14,9 @@ import {
   MapPin,
   ExternalLink,
   ArrowRight,
-  Layers,
   FastForward,
   Users,
   ShieldCheck,
-  Copy,
   MessageCircle,
   Mail,
   Phone,
@@ -1216,10 +1214,11 @@ export function CandidatesDashboardPage() {
                   <SelectValue placeholder="Todos los estados" />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl border-gray-100 shadow-xl p-2">
-                  <SelectItem value="all" className="rounded-lg font-semibold text-gray-600 text-xs">Todos los estados</SelectItem>
-                  <SelectItem value="active" className="rounded-lg font-semibold text-gray-600 text-xs">Activo</SelectItem>
-                  <SelectItem value="hired" className="rounded-lg font-semibold text-gray-600 text-xs">Contratado</SelectItem>
-                  <SelectItem value="rejected" className="rounded-lg font-semibold text-gray-600 text-xs">Rechazado</SelectItem>
+                  <SelectItem value="all" className="rounded-lg font-semibold text-gray-600 text-xs">Total candidatos</SelectItem>
+                  <SelectItem value="active" className="rounded-lg font-semibold text-gray-600 text-xs">En proceso</SelectItem>
+                  <SelectItem value="hired" className="rounded-lg font-semibold text-gray-600 text-xs">Contratados</SelectItem>
+                  <SelectItem value="rejected" className="rounded-lg font-semibold text-gray-600 text-xs">Descartados</SelectItem>
+                  <SelectItem value="action_required" className="rounded-lg font-semibold text-gray-600 text-xs">Acción requerida</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -1254,39 +1253,6 @@ export function CandidatesDashboardPage() {
                 emptyText="No se encontraron cargos"
                 icon={<Briefcase className="w-3.5 h-3.5" />}
               />
-            </div>
-
-            {/* Etapa actual */}
-            <div className="space-y-3">
-              <label className="text-[11px] font-bold text-gray-400 flex items-center gap-2 uppercase tracking-wider">
-                <Layers className="w-3.5 h-3.5" /> Etapa actual
-              </label>
-              <Combobox 
-                value={filterStage} 
-                onValueChange={setFilterStage} 
-                options={stageOptions}
-                placeholder="Todas las etapas"
-                searchPlaceholder="Buscar etapa..."
-                emptyText="No se encontraron etapas"
-                icon={<Layers className="w-3.5 h-3.5" />}
-              />
-            </div>
-
-            {/* Aplicaciones activas */}
-            <div className="space-y-3">
-              <label className="text-[11px] font-bold text-gray-400 flex items-center gap-2 uppercase tracking-wider">
-                <Copy className="w-3.5 h-3.5" /> Aplicaciones activas
-              </label>
-              <Select value={filterHasVacancies} onValueChange={setFilterHasVacancies}>
-                <SelectTrigger className="h-12 rounded-xl border-gray-200 bg-gray-50 focus:bg-white transition-all font-semibold text-gray-600 text-xs">
-                  <SelectValue placeholder="Filtrar por aplicaciones" />
-                </SelectTrigger>
-                <SelectContent className="rounded-xl border-gray-100 shadow-xl p-2">
-                  <SelectItem value="all" className="rounded-lg font-semibold text-gray-600 text-xs">Todos los candidatos</SelectItem>
-                  <SelectItem value="with" className="rounded-lg font-semibold text-gray-600 text-xs">Con vacantes asignadas</SelectItem>
-                  <SelectItem value="without" className="rounded-lg font-semibold text-gray-600 text-xs">Sin vacantes asignadas</SelectItem>
-                </SelectContent>
-              </Select>
             </div>
 
             {/* Origen Serena */}
