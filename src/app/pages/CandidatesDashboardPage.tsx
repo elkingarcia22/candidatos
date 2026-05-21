@@ -659,10 +659,22 @@ export function CandidatesDashboardPage() {
                             </span>
                           </td>
                           <td className="px-6 py-5">
-                            {candidate.displayStage && (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 text-[11px] font-semibold">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                                {candidate.displayStage}
+                            {candidate.displayStatus && (
+                              <span className={cn(
+                                "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold",
+                                candidate.statusKey === 'active' && "bg-blue-50 text-blue-700",
+                                candidate.statusKey === 'hired' && "bg-emerald-50 text-emerald-700",
+                                candidate.statusKey === 'rejected' && "bg-red-50 text-red-700",
+                                candidate.statusKey === 'action_required' && "bg-orange-50 text-orange-600"
+                              )}>
+                                <span className={cn(
+                                  "w-1.5 h-1.5 rounded-full",
+                                  candidate.statusKey === 'active' && "bg-blue-500",
+                                  candidate.statusKey === 'hired' && "bg-emerald-500",
+                                  candidate.statusKey === 'rejected' && "bg-red-500",
+                                  candidate.statusKey === 'action_required' && "bg-orange-500"
+                                )} />
+                                {candidate.displayStatus}
                               </span>
                             )}
                           </td>
