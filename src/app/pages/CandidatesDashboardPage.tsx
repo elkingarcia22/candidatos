@@ -601,12 +601,7 @@ export function CandidatesDashboardPage() {
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Celular</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
-                        <span className="flex items-center justify-center gap-1">
-                          <span>Vacantes</span>
-                          <span className="text-[10px] font-medium text-gray-400">(aplicó)</span>
-                        </span>
-                      </th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Aplicaciones</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Estado vacante actual</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Última actividad</th>
@@ -660,7 +655,7 @@ export function CandidatesDashboardPage() {
                           </td>
                           <td className="px-6 py-5 text-center">
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleCandidateClick(candidate.id); }}
+                              onClick={(e) => { e.stopPropagation(); handleCandidateClick(candidate.id, candidate.applications?.[0]?.id); }}
                               className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold text-gray-700 hover:text-gray-900 transition-all cursor-pointer"
                             >
                               {candidate.totalVacanciesCount}
