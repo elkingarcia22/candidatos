@@ -748,8 +748,8 @@ export function CandidatesDashboardPage() {
                             {candidate.origin === 'serena' ? (
                               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-semibold text-gray-700 rounded-lg"
                                 style={{
-                                  background: 'linear-gradient(to right, #0C5BEF, #8823EA, #EA066F, #FF5416) padding-box, linear-gradient(to right, #0C5BEF, #8823EA, #EA066F, #FF5416) border-box',
-                                  border: '1.5px solid transparent'
+                                  background: 'linear-gradient(white, white) padding-box, linear-gradient(to right, #0C5BEF, #8823EA, #EA066F, #FF5416) border-box',
+                                  border: '2px solid transparent'
                                 }}
                               >
                                 <Sparkles className="w-3 h-3" />
