@@ -790,7 +790,7 @@ export function CandidatesDashboardPage() {
                                   { icon: Download, label: 'Descargar CV' },
                                   { icon: Printer, label: 'Imprimir CV' },
                                 ].map((item, idx) => (
-                                  <DropdownMenuItem key={idx} onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-lg hover:bg-gray-50">
+                                  <DropdownMenuItem key={idx} onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-lg hover:bg-gray-50 focus:bg-gray-50">
                                     <item.icon className="w-4 h-4 text-gray-400" />
                                     <span className="text-xs font-medium text-gray-600">{item.label}</span>
                                   </DropdownMenuItem>
@@ -798,9 +798,9 @@ export function CandidatesDashboardPage() {
 
                                 <div className="my-1 h-px bg-gray-100" />
 
-                                <DropdownMenuItem variant="destructive" onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl transition-colors group">
-                                  <Trash2 className="w-4 h-4" />
-                                  <span className="text-xs font-semibold">Eliminar candidato</span>
+                                <DropdownMenuItem onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-red-50 focus:bg-red-50 transition-colors group">
+                                  <Trash2 className="w-4 h-4 text-gray-400 group-hover:text-red-600 group-focus:text-red-600" />
+                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-red-600 group-focus:text-red-600">Eliminar candidato</span>
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
