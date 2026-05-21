@@ -343,11 +343,11 @@ export function CandidatesDashboardPage() {
   ].filter(Boolean).length;
 
   const stats = [
-    { id: 'all', label: 'TOTAL CANDIDATOS', value: enrichedCandidates.length.toString(), color: 'text-gray-900', activeColor: 'bg-gray-50 border-gray-300 ring-2 ring-gray-100', icon: Users, iconBg: 'bg-gray-100 text-gray-600', activeIconBg: 'bg-white/80 text-gray-700' },
-    { id: 'active', label: 'EN PROCESO', value: enrichedCandidates.filter(c => c.statusKey === 'active').length.toString(), color: 'text-blue-600', activeColor: 'bg-blue-50 border-blue-200 ring-2 ring-blue-500/10', icon: RefreshCw, iconBg: 'bg-blue-100 text-blue-600', activeIconBg: 'bg-white/80 text-blue-700' },
-    { id: 'hired', label: 'CONTRATADOS', value: enrichedCandidates.filter(c => c.statusKey === 'hired').length.toString(), color: 'text-emerald-600', activeColor: 'bg-emerald-50 border-emerald-200 ring-2 ring-emerald-500/10', icon: ShieldCheck, iconBg: 'bg-emerald-100 text-emerald-600', activeIconBg: 'bg-white/80 text-emerald-700' },
-    { id: 'rejected', label: 'DESCARTADOS', value: enrichedCandidates.filter(c => c.statusKey === 'rejected').length.toString(), color: 'text-red-500', activeColor: 'bg-red-50 border-red-200 ring-2 ring-red-500/10', icon: XCircle, iconBg: 'bg-red-100 text-red-500', activeIconBg: 'bg-white/80 text-red-600' },
-    { id: 'action_required', label: 'ACCIÓN REQUERIDA', value: enrichedCandidates.filter(c => c.statusKey === 'action_required').length.toString(), color: 'text-orange-500', activeColor: 'bg-orange-50 border-orange-200 ring-2 ring-orange-500/10', icon: AlertCircle, iconBg: 'bg-orange-100 text-orange-500', activeIconBg: 'bg-white/80 text-orange-600' },
+    { id: 'all', label: 'TOTAL CANDIDATOS', value: enrichedCandidates.length.toString(), color: 'text-gray-900', activeColor: 'bg-gray-50 border-gray-200 ring-2 ring-gray-100' },
+    { id: 'active', label: 'EN PROCESO', value: enrichedCandidates.filter(c => c.statusKey === 'active').length.toString(), color: 'text-blue-600', activeColor: 'bg-blue-50 border-blue-200 ring-2 ring-blue-500/10' },
+    { id: 'hired', label: 'CONTRATADOS', value: enrichedCandidates.filter(c => c.statusKey === 'hired').length.toString(), color: 'text-emerald-600', activeColor: 'bg-emerald-50 border-emerald-200 ring-2 ring-emerald-500/10' },
+    { id: 'rejected', label: 'DESCARTADOS', value: enrichedCandidates.filter(c => c.statusKey === 'rejected').length.toString(), color: 'text-red-500', activeColor: 'bg-red-50 border-red-200 ring-2 ring-red-500/10' },
+    { id: 'action_required', label: 'ACCIÓN REQUERIDA', value: enrichedCandidates.filter(c => c.statusKey === 'action_required').length.toString(), color: 'text-orange-500', activeColor: 'bg-orange-50 border-orange-200 ring-2 ring-orange-500/10' },
   ];
 
   // Handlers para el Drawer
@@ -420,7 +420,7 @@ export function CandidatesDashboardPage() {
         <main className="flex-1 flex flex-col min-h-0 relative">
           <div className="flex flex-col flex-1 min-h-0 space-y-8">
             {/* Stats Grid */}
-            <div className="grid grid-cols-5 gap-4 shrink-0">
+            <div className="grid grid-cols-5 gap-3 shrink-0">
               {stats.map((stat) => {
                 const Icon = stat.icon;
                 const isActive = filterStatus === stat.id;
@@ -429,34 +429,23 @@ export function CandidatesDashboardPage() {
                     key={stat.id} 
                     onClick={() => setFilterStatus(stat.id)}
                     className={cn(
-                      "bg-white border rounded-[22px] shadow-sm hover:shadow-md transition-all text-left group border-gray-100 relative overflow-hidden",
-                      isActive ? stat.activeColor : "hover:border-blue-100"
+                      "bg-white border rounded-2xl shadow-sm hover:shadow-md transition-all text-left group border-gray-100",
+                      isActive ? stat.activeColor : "hover:border-gray-200"
                     )}
                   >
-                    <div className="p-5">
-                      {/* Icon + Label row */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className={cn(
-                          "w-11 h-11 rounded-2xl flex items-center justify-center transition-all",
-                          isActive ? stat.activeIconBg : stat.iconBg
-                        )}>
-                          <Icon className={cn(
-                            "w-5 h-5",
-                            isActive && "animate-[spin_3s_linear_infinite]"
-                          )} />
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center group-hover:bg-gray-200/70 transition-colors">
+                          <Icon className="w-4 h-4 text-gray-500" />
                         </div>
                         {isActive && (
-                          <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200 shrink-0">
-                            <Check className="w-3.5 h-3.5 text-white" />
-                          </div>
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
                         )}
                       </div>
-                      {/* Label */}
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider group-hover:text-gray-500 transition-colors">
+                      <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                         {stat.label}
                       </span>
-                      {/* Value */}
-                      <div className={cn("text-[28px] font-bold tracking-tight mt-0.5 transition-transform group-hover:scale-105 origin-left", stat.color)}>
+                      <div className={cn("text-xl font-bold tracking-tight -mt-0.5", stat.color)}>
                         {stat.value}
                       </div>
                     </div>
