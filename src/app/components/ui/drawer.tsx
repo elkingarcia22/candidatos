@@ -15,21 +15,17 @@ export function Drawer({ open, onClose, children, width = '80%' }: DrawerProps) 
 
   useEffect(() => {
     if (open) {
-      // Primero hacemos visible el drawer
       setIsVisible(true);
-      // Luego iniciamos la animación en el siguiente frame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsAnimating(true);
         });
       });
     } else {
-      // Primero quitamos la animación
       setIsAnimating(false);
-      // Luego ocultamos el drawer después de la animación
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 300); // Debe coincidir con duration-300
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [open]);
@@ -43,7 +39,6 @@ export function Drawer({ open, onClose, children, width = '80%' }: DrawerProps) 
 
     document.addEventListener('keydown', handleEscape);
     
-    // Prevent scrolling on the body when drawer is open
     if (open) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -60,24 +55,21 @@ export function Drawer({ open, onClose, children, width = '80%' }: DrawerProps) 
 
   return (
     <>
-      {/* Overlay */}
       <div
         className={cn(
-          'fixed inset-0 bg-black/50 z-40 transition-opacity duration-300',
+          'fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300',
           isAnimating ? 'opacity-100' : 'opacity-0'
         )}
         onClick={onClose}
       />
 
-      {/* Drawer */}
       <div
         className={cn(
-          'fixed right-0 top-0 h-full bg-white z-50 shadow-2xl transition-transform duration-300 ease-out rounded-tl-2xl',
+          'fixed right-0 top-0 h-full bg-white z-50 shadow-drawer transition-transform duration-300 ease-out rounded-tl-2xl',
           isAnimating ? 'translate-x-0' : 'translate-x-full'
         )}
         style={{ width }}
       >
-        {/* Content */}
         <div className="h-full overflow-hidden relative">
           {children}
         </div>

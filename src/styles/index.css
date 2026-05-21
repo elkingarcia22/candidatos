@@ -17,7 +17,6 @@
   pointer-events: none !important;
 }
 
-/* Fallback: target by position as well */
 .import-modal-content button[class*='absolute'][class*='top-'][class*='right-'][class*='opacity'] {
   display: none !important;
 }

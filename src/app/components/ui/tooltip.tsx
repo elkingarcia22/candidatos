@@ -65,7 +65,7 @@ export function Tooltip({ content, children, side = 'top' }: TooltipProps) {
   }, [isVisible, side]);
 
   const getTooltipClasses = () => {
-    const baseClasses = 'fixed px-3 py-2 bg-gray-900 text-white text-xs rounded-xl shadow-xl max-w-[320px] pointer-events-none z-[9999]';
+    const baseClasses = 'fixed px-4 py-3 bg-gray-900 text-white text-xs font-semibold tracking-tight rounded-xl shadow-2xl max-w-[320px] pointer-events-none z-[9999] backdrop-blur-xl';
     const visibilityClass = isPositioned ? 'opacity-100' : 'opacity-0';
     
     let transformClasses = '';

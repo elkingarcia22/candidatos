@@ -12,7 +12,7 @@ import { Tooltip } from './ui/tooltip';
 
 export function MainMenuSidebar() {
   return (
-    <div className="w-[68px] h-[calc(100vh-32px)] my-4 ml-4 bg-[#0F1423] rounded-full flex flex-col items-center py-8 shadow-xl flex-shrink-0 z-50">
+    <div className="w-[68px] h-full bg-[#0F1423] rounded-full flex flex-col items-center py-8 shadow-xl flex-shrink-0 z-50">
       {/* Logo Placeholder */}
       <div className="mb-12 cursor-pointer hover:opacity-80 transition-opacity">
         <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
