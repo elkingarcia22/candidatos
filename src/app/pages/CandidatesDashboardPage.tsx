@@ -431,18 +431,16 @@ export function CandidatesDashboardPage() {
                     )}
                   >
                     <div className="p-4">
-                      <div className="flex items-center justify-between mb-2.5">
-                        <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center group-hover:bg-gray-200/70 transition-colors">
-                          <Icon className="w-4 h-4 text-gray-500" />
-                        </div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Icon className="w-4 h-4 text-gray-400" />
+                        <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+                          {stat.label}
+                        </span>
                         {isActive && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-600 ml-auto" />
                         )}
                       </div>
-                      <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
-                        {stat.label}
-                      </span>
-                      <div className={cn("text-xl font-bold tracking-tight -mt-0.5", stat.color)}>
+                      <div className={cn("text-xl font-bold tracking-tight", stat.color)}>
                         {stat.value}
                       </div>
                     </div>
