@@ -36,10 +36,7 @@ import {
   Table2,
   AlertCircle,
   RefreshCw,
-  XCircle,
-  TrendingUp,
-  Ban,
-  Clock
+  XCircle
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -343,11 +340,11 @@ export function CandidatesDashboardPage() {
   ].filter(Boolean).length;
 
   const stats = [
-    { id: 'all', label: 'TOTAL CANDIDATOS', value: enrichedCandidates.length.toString(), color: 'text-gray-900', activeColor: 'bg-gray-50 border-gray-200 ring-2 ring-gray-100' },
-    { id: 'active', label: 'EN PROCESO', value: enrichedCandidates.filter(c => c.statusKey === 'active').length.toString(), color: 'text-blue-600', activeColor: 'bg-blue-50 border-blue-200 ring-2 ring-blue-500/10' },
-    { id: 'hired', label: 'CONTRATADOS', value: enrichedCandidates.filter(c => c.statusKey === 'hired').length.toString(), color: 'text-emerald-600', activeColor: 'bg-emerald-50 border-emerald-200 ring-2 ring-emerald-500/10' },
-    { id: 'rejected', label: 'DESCARTADOS', value: enrichedCandidates.filter(c => c.statusKey === 'rejected').length.toString(), color: 'text-red-500', activeColor: 'bg-red-50 border-red-200 ring-2 ring-red-500/10' },
-    { id: 'action_required', label: 'ACCIÓN REQUERIDA', value: enrichedCandidates.filter(c => c.statusKey === 'action_required').length.toString(), color: 'text-orange-500', activeColor: 'bg-orange-50 border-orange-200 ring-2 ring-orange-500/10' },
+    { id: 'all', label: 'TOTAL CANDIDATOS', value: enrichedCandidates.length.toString(), color: 'text-gray-900', activeColor: 'bg-gray-50 border-gray-200 ring-2 ring-gray-100', icon: Users },
+    { id: 'active', label: 'EN PROCESO', value: enrichedCandidates.filter(c => c.statusKey === 'active').length.toString(), color: 'text-blue-600', activeColor: 'bg-blue-50 border-blue-200 ring-2 ring-blue-500/10', icon: RefreshCw },
+    { id: 'hired', label: 'CONTRATADOS', value: enrichedCandidates.filter(c => c.statusKey === 'hired').length.toString(), color: 'text-emerald-600', activeColor: 'bg-emerald-50 border-emerald-200 ring-2 ring-emerald-500/10', icon: ShieldCheck },
+    { id: 'rejected', label: 'DESCARTADOS', value: enrichedCandidates.filter(c => c.statusKey === 'rejected').length.toString(), color: 'text-red-500', activeColor: 'bg-red-50 border-red-200 ring-2 ring-red-500/10', icon: XCircle },
+    { id: 'action_required', label: 'ACCIÓN REQUERIDA', value: enrichedCandidates.filter(c => c.statusKey === 'action_required').length.toString(), color: 'text-orange-500', activeColor: 'bg-orange-50 border-orange-200 ring-2 ring-orange-500/10', icon: AlertCircle },
   ];
 
   // Handlers para el Drawer
