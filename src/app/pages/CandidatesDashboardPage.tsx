@@ -607,7 +607,7 @@ export function CandidatesDashboardPage() {
                   <thead>
                     <tr className="bg-gray-50/50">
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Cédula</th>
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Identificación</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Celular</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Aplicaciones</th>
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Estado vacante actual</th>
