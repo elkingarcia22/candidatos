@@ -627,7 +627,7 @@ export function JobView({
                     setSerenaMode('global');
                     setIsSerenaOpen(!isSerenaOpen);
                   }}
-                  className="h-11 px-6 rounded-full font-semibold text-xs transition-all flex items-center gap-2 shadow-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 text-white hover:scale-105 shadow-indigo-100"
+                  className="h-11 px-6 rounded-full font-semibold text-xs transition-all flex items-center gap-2 shadow-lg bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] text-white hover:scale-105 shadow-indigo-100"
                 >
                   <Sparkles className={cn("w-4 h-4", !isSerenaOpen && "animate-pulse")} />
                   Serena IA
@@ -636,7 +636,7 @@ export function JobView({
               {vacancy?.status === 'draft' ? (
                 // En draft: dos botones separados
                 <>
-                  <div className="p-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-full group transition-all hover:shadow-lg hover:shadow-indigo-100">
+                  <div className="p-[2px] bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] rounded-full group transition-all hover:shadow-lg hover:shadow-indigo-100">
                     <Button
                       onClick={() => {
                         setSerenaMode('search');
@@ -666,7 +666,7 @@ export function JobView({
                 // En published: dropdown original
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <div className="p-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-full group transition-all hover:shadow-lg hover:shadow-indigo-100">
+                    <div className="p-[2px] bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] rounded-full group transition-all hover:shadow-lg hover:shadow-indigo-100">
                       <Button variant="ghost" className="bg-white hover:bg-transparent text-gray-600 font-semibold text-[11px] h-[40px] px-6 transition-all rounded-full flex items-center gap-2 relative overflow-hidden w-full">
                         <Sparkles className="w-4 h-4 text-blue-500 group-hover:text-white transition-colors" />
                         <span className="group-hover:text-white transition-colors">Importar candidatos</span>
@@ -1259,7 +1259,7 @@ export function JobView({
                 </p>
                 <div className="flex flex-col items-center gap-8">
                   <div className="flex items-center gap-4">
-                    <div className="p-[2px] bg-gradient-to-r from-blue-600 via-indigo-600 to-fuchsia-600 rounded-[20px] group transition-all hover:shadow-xl hover:shadow-indigo-100">
+                    <div className="p-[2px] bg-[linear-gradient(to_right,#FF5416,#EA066F,#8823EA,#0C5BEF)] rounded-[20px] group transition-all hover:shadow-xl hover:shadow-indigo-100">
                       <Button 
                         variant="ghost"
                         onClick={() => {

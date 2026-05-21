@@ -56,7 +56,7 @@ const FeedbackFAB: React.FC<FeedbackFABProps> = ({ onClick }) => {
           layout: { duration: 0.4, type: "spring", bounce: 0.2 },
           duration: 0.3 
         }}
-        className={`relative h-14 ${isExpanded ? 'px-6' : 'w-14'} rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-fuchsia-600 text-white flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(79,70,229,0.5)] overflow-hidden`}
+        className={`relative h-14 ${isExpanded ? 'px-6' : 'w-14'} rounded-2xl bg-[linear-gradient(135deg,#FF5416,#EA066F,#8823EA,#0C5BEF)] text-white flex items-center justify-center shadow-[0_20px_40px_-10px_rgba(79,70,229,0.5)] overflow-hidden`}
         data-tour="feedback-button"
       >
         {/* Animated Background Pulse */}
