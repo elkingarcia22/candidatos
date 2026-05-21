@@ -745,15 +745,18 @@ export function CandidatesDashboardPage() {
                             </Popover>
                           </td>
                           <td className="px-6 py-5 text-center">
-                            <Badge 
-                              className={cn(
-                                "text-[10px] px-2 py-0.5 border-none font-semibold rounded-lg",
-                                candidate.origin === 'serena' ? "bg-indigo-50 text-indigo-600" : "bg-gray-100 text-gray-600"
-                              )}
-                            >
-                              {candidate.origin === 'serena' && <Sparkles className="w-3 h-3 mr-1 inline" />}
-                              {candidate.originLabel}
-                            </Badge>
+                            {candidate.origin === 'serena' ? (
+                              <span className="inline-flex p-[1.5px] rounded-lg bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)]">
+                                <span className="bg-white rounded-[6px] px-2.5 py-0.5 text-[10px] font-semibold text-gray-700 flex items-center gap-1">
+                                  <Sparkles className="w-3 h-3" />
+                                  {candidate.originLabel}
+                                </span>
+                              </span>
+                            ) : (
+                              <Badge className="text-[10px] px-2 py-0.5 border-none font-semibold rounded-lg bg-gray-100 text-gray-600">
+                                {candidate.originLabel}
+                              </Badge>
+                            )}
                           </td>
                           <td className="px-6 py-5">
                             <span className="text-xs font-semibold text-gray-500">{candidate.lastActivity}</span>
