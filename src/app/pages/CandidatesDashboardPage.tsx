@@ -798,9 +798,9 @@ export function CandidatesDashboardPage() {
 
                                 <div className="my-1 h-px bg-gray-100" />
 
-                                <DropdownMenuItem onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-rose-50 transition-colors group">
-                                  <Trash2 className="w-4 h-4 text-gray-400 group-hover:text-rose-600" />
-                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-rose-600">Eliminar candidato</span>
+                                <DropdownMenuItem onClick={(e) => e.stopPropagation()} className="flex items-center gap-3 p-2.5 cursor-pointer rounded-xl hover:bg-red-50 transition-colors group">
+                                  <Trash2 className="w-4 h-4 text-gray-400 group-hover:text-red-600" />
+                                  <span className="text-xs font-semibold text-gray-600 group-hover:text-red-600">Eliminar candidato</span>
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
