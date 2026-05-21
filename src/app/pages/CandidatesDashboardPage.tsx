@@ -656,14 +656,28 @@ export function CandidatesDashboardPage() {
                             </div>
                           </td>
                           <td className="px-6 py-5">
-                            <span className="text-xs font-semibold text-gray-500">{candidate.cedula}</span>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigator.clipboard.writeText(candidate.cedula);
+                                toast.success('Cédula copiada', { position: 'bottom-center', duration: 1500 });
+                              }}
+                              className="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+                            >
+                              {candidate.cedula}
+                            </button>
                           </td>
                           <td className="px-6 py-5">
                             <span className="text-xs font-semibold text-gray-500">{candidate.phone}</span>
                           </td>
                           <td className="px-6 py-5 text-center">
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleOpenApplications(candidate.id); }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigator.clipboard.writeText(candidate.totalVacanciesCount.toString());
+                                toast.success('Número copiado', { position: 'bottom-center', duration: 1500 });
+                                handleOpenApplications(candidate.id);
+                              }}
                               className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold text-gray-700 hover:text-gray-900 transition-all cursor-pointer"
                             >
                               {candidate.totalVacanciesCount}
