@@ -361,7 +361,7 @@ export function CandidatesDashboardPage() {
 
       // Filtros por columna
       const matchesColRole = colFilterRole.length === 0 || colFilterRole.includes(candidate.role);
-      const matchesColId = colFilterId === '' || candidate.cedula.toLowerCase().includes(colFilterId.toLowerCase());
+      const matchesColId = colFilterId === '' || (candidate.email || '').toLowerCase().includes(colFilterId.toLowerCase());
       const matchesColPhone = colFilterPhone === '' || candidate.phone.toLowerCase().includes(colFilterPhone.toLowerCase());
       const matchesColAppCount = candidate.totalVacanciesCount >= colFilterAppCount[0] && candidate.totalVacanciesCount <= colFilterAppCount[1];
       const matchesColStatus = colFilterStatus.length === 0 || colFilterStatus.includes(candidate.statusKey);
@@ -393,20 +393,15 @@ export function CandidatesDashboardPage() {
         let aValue: any = a[sortConfig.key as keyof typeof a];
         let bValue: any = b[sortConfig.key as keyof typeof b];
 
-        if (sortConfig.key === 'applications') {
-          aValue = a.totalVacanciesCount;
-          bValue = b.totalVacanciesCount;
-        } else if (sortConfig.key === 'status') {
+        if (sortConfig.key === 'status') {
           aValue = a.statusKey;
           bValue = b.statusKey;
-        } else if (sortConfig.key === 'lastActivity') {
-          const aParts = a.lastActivity.split('/');
-          const bParts = b.lastActivity.split('/');
-          aValue = new Date(`${aParts[2]}-${aParts[1]}-${aParts[0]}`).getTime();
-          bValue = new Date(`${bParts[2]}-${bParts[1]}-${bParts[0]}`).getTime();
         } else if (sortConfig.key === 'name') {
           aValue = a.name;
           bValue = b.name;
+        } else if (sortConfig.key === 'email') {
+          aValue = a.email || '';
+          bValue = b.email || '';
         }
 
         if (aValue < bValue) {
@@ -669,29 +664,29 @@ export function CandidatesDashboardPage() {
                         </div>
                       </th>
                       
-                      {/* Identificación */}
+                      {/* Correo electrónico */}
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
                         <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
-                          Identificación
+                          Correo electrónico
                           <div className="flex items-center">
                             <Popover>
                               <PopoverTrigger asChild>
                                 <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", colFilterId !== '' && "text-blue-600 bg-blue-50")}><Search className="h-3.5 w-3.5" /></Button>
                               </PopoverTrigger>
                               <PopoverContent className="w-56 p-3 rounded-lg shadow-lg border border-gray-100" align="start">
-                                <div className="text-xs font-semibold mb-2 px-1 text-gray-500">Buscar Identificación</div>
+                                <div className="text-xs font-semibold mb-2 px-1 text-gray-500">Buscar Correo</div>
                                 <Input 
                                   autoFocus
                                   value={colFilterId} 
                                   onChange={e => setColFilterId(e.target.value)} 
-                                  placeholder="Ej. 1.023..." 
+                                  placeholder="Ej. usuario@correo.com..." 
                                   className="h-8 text-xs" 
                                 />
                                 <div className="flex justify-end mt-2"><Button variant="ghost" size="sm" onClick={() => setColFilterId('')} className="h-6 text-[10px]">Limpiar</Button></div>
                               </PopoverContent>
                             </Popover>
-                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'cedula' && "text-blue-600")} onClick={() => handleSort('cedula')}>
-                              {sortConfig?.key === 'cedula' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'email' && "text-blue-600")} onClick={() => handleSort('email')}>
+                              {sortConfig?.key === 'email' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
                             </Button>
                           </div>
                         </div>
@@ -722,36 +717,7 @@ export function CandidatesDashboardPage() {
                         </div>
                       </th>
                       
-                      {/* Aplicaciones */}
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)] text-center">
-                        <div className="flex items-center justify-center gap-1.5 text-[13px] font-semibold text-gray-700">
-                          Aplicaciones
-                          <div className="flex items-center">
-                            <Popover>
-                              <PopoverTrigger asChild>
-                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", (colFilterAppCount[0] > 0 || colFilterAppCount[1] < 10) && "text-blue-600 bg-blue-50")}><ListFilter className="h-3.5 w-3.5" /></Button>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-56 p-4 rounded-lg shadow-lg border border-gray-100" align="center">
-                                <div className="text-xs font-semibold mb-4 text-gray-500 flex justify-between">
-                                  <span>Rango aplicaciones</span>
-                                  <span className="text-blue-600 font-bold">{colFilterAppCount[0]} - {colFilterAppCount[1]}</span>
-                                </div>
-                                <Slider
-                                  value={colFilterAppCount}
-                                  onValueChange={setColFilterAppCount}
-                                  max={10}
-                                  min={0}
-                                  step={1}
-                                />
-                                <div className="flex justify-end mt-4"><Button variant="ghost" size="sm" onClick={() => setColFilterAppCount([0, 10])} className="h-6 text-[10px]">Reiniciar</Button></div>
-                              </PopoverContent>
-                            </Popover>
-                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'applications' && "text-blue-600")} onClick={() => handleSort('applications')}>
-                              {sortConfig?.key === 'applications' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
-                            </Button>
-                          </div>
-                        </div>
-                      </th>
+
                       
                       {/* Estado vacante actual */}
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
@@ -842,37 +808,7 @@ export function CandidatesDashboardPage() {
                         </div>
                       </th>
                       
-                      {/* Última actividad */}
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
-                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
-                          Última actividad
-                          <div className="flex items-center">
-                            <Popover>
-                              <PopoverTrigger asChild>
-                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", (colFilterDateRange.from || colFilterDateRange.to) && "text-blue-600 bg-blue-50")}><CalendarIcon className="h-3.5 w-3.5" /></Button>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0 rounded-lg shadow-lg border border-gray-100" align="end">
-                                <Calendar
-                                  mode="range"
-                                  selected={colFilterDateRange}
-                                  onSelect={(range: any) => setColFilterDateRange(range || { from: undefined, to: undefined })}
-                                  initialFocus
-                                  locale={es}
-                                />
-                                <div className="p-3 border-t border-gray-100 flex justify-between items-center bg-gray-50 rounded-b-lg">
-                                  <span className="text-[10px] text-gray-500 font-medium">
-                                    {colFilterDateRange.from ? format(colFilterDateRange.from, 'dd MMM', {locale: es}) : 'Inicio'} - {colFilterDateRange.to ? format(colFilterDateRange.to, 'dd MMM', {locale: es}) : 'Fin'}
-                                  </span>
-                                  <Button variant="outline" size="sm" onClick={() => setColFilterDateRange({ from: undefined, to: undefined })} className="h-7 text-[10px] rounded-lg">Limpiar</Button>
-                                </div>
-                              </PopoverContent>
-                            </Popover>
-                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'lastActivity' && "text-blue-600")} onClick={() => handleSort('lastActivity')}>
-                              {sortConfig?.key === 'lastActivity' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
-                            </Button>
-                          </div>
-                        </div>
-                      </th>
+
                       
                       {/* Acciones */}
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-right border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Acciones</th>
@@ -881,7 +817,7 @@ export function CandidatesDashboardPage() {
                   <tbody className="divide-y divide-gray-50">
                     {sortedCandidates.length === 0 ? (
                       <tr>
-                        <td colSpan={8} className="px-6 py-20 text-center">
+                        <td colSpan={6} className="px-6 py-20 text-center">
                           <div className="flex flex-col items-center justify-center text-gray-400">
                             <Users className="w-12 h-12 mb-4 opacity-20" />
                             <p className="text-sm font-semibold">No se encontraron candidatos</p>
@@ -921,12 +857,12 @@ export function CandidatesDashboardPage() {
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                navigator.clipboard.writeText(candidate.cedula);
-                                toast.success('Identificación copiada', { position: 'bottom-center', duration: 1500 });
+                                navigator.clipboard.writeText(candidate.email || '');
+                                toast.success('Correo copiado', { position: 'bottom-center', duration: 1500 });
                               }}
                               className="text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
                             >
-                              {candidate.cedula}
+                              {candidate.email}
                             </button>
                           </td>
                           <td className="px-6 py-5">
@@ -941,19 +877,7 @@ export function CandidatesDashboardPage() {
                               {candidate.phone}
                             </button>
                           </td>
-                          <td className="px-6 py-5 text-center">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                navigator.clipboard.writeText(candidate.totalVacanciesCount.toString());
-                                toast.success('Número copiado', { position: 'bottom-center', duration: 1500 });
-                                handleOpenApplications(candidate.id);
-                              }}
-                              className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-bold text-gray-700 hover:text-gray-900 transition-all cursor-pointer"
-                            >
-                              {candidate.totalVacanciesCount}
-                            </button>
-                          </td>
+
                           <td className="px-6 py-5">
                             {candidate.displayStatus && (
                               <button
@@ -1000,9 +924,7 @@ export function CandidatesDashboardPage() {
                               </Badge>
                             )}
                           </td>
-                          <td className="px-6 py-5">
-                            <span className="text-xs font-semibold text-gray-500">{candidate.lastActivity}</span>
-                          </td>
+
                           <td className="px-6 py-5 text-right">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
