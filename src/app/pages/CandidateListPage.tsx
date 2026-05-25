@@ -163,7 +163,7 @@ export function CandidateListPage() {
             {/* Serena IA Button */}
             <Tooltip content="Asistente Serena IA">
               <button 
-                onClick={() => setSerenaActive(!isSerenaActive)}
+                onClick={(e) => e.preventDefault()}
                 className={cn(
                   "flex items-center gap-2 px-4 py-1.5 rounded-full transition-all group",
                   isSerenaActive 

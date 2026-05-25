@@ -34,7 +34,12 @@ import {
   Table2,
   AlertCircle,
   RefreshCw,
-  XCircle
+  XCircle,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
+  ListFilter,
+  Calendar as CalendarIcon
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -45,6 +50,12 @@ import { Drawer } from '../components/ui/drawer';
 import { CandidateDetailDrawer } from '../components/CandidateDetailDrawer';
 import { SerenaIAPanel } from '../components/SerenaIAPanel';
 import { MainMenuSidebar } from '../components/MainMenuSidebar';
+import { Checkbox } from '../components/ui/checkbox';
+import { Input } from '../components/ui/input';
+import { Slider } from '../components/ui/slider';
+import { Calendar } from '../components/ui/calendar';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -196,6 +207,30 @@ export function CandidatesDashboardPage() {
   const [serenaMode, setSerenaMode] = useState<'global' | 'search'>('global');
   const [searchTrigger, setSearchTrigger] = useState(0);
 
+  // Estados de filtros de columna
+  const [colFilterRole, setColFilterRole] = useState<string[]>([]);
+  const [colFilterId, setColFilterId] = useState<string>('');
+  const [colFilterPhone, setColFilterPhone] = useState<string>('');
+  const [colFilterAppCount, setColFilterAppCount] = useState<number[]>([0, 10]);
+  const [colFilterStatus, setColFilterStatus] = useState<string[]>([]);
+  const [colFilterOrigin, setColFilterOrigin] = useState<string[]>([]);
+  const [colFilterDateRange, setColFilterDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({ from: undefined, to: undefined });
+
+  // Estado de ordenamiento
+  const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
+
+  const handleSort = (key: string) => {
+    let direction: 'asc' | 'desc' = 'asc';
+    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    } else if (sortConfig && sortConfig.key === key && sortConfig.direction === 'desc') {
+      setSortConfig(null);
+      return;
+    }
+    setSortConfig({ key, direction });
+  };
+
+
   const enrichedCandidates = useMemo(() => {
     return candidatesList.map((c, idx) => {
       const mainApp = c.applications?.[0];
@@ -324,9 +359,67 @@ export function CandidatesDashboardPage() {
                                  (filterHasVacancies === 'with' && hasVacancies) ||
                                  (filterHasVacancies === 'without' && !hasVacancies);
 
-      return matchesSearch && matchesOrigin && matchesStage && matchesStatus && matchesLocation && matchesRole && matchesHasVacancies;
+      // Filtros por columna
+      const matchesColRole = colFilterRole.length === 0 || colFilterRole.includes(candidate.role);
+      const matchesColId = colFilterId === '' || candidate.cedula.toLowerCase().includes(colFilterId.toLowerCase());
+      const matchesColPhone = colFilterPhone === '' || candidate.phone.toLowerCase().includes(colFilterPhone.toLowerCase());
+      const matchesColAppCount = candidate.totalVacanciesCount >= colFilterAppCount[0] && candidate.totalVacanciesCount <= colFilterAppCount[1];
+      const matchesColStatus = colFilterStatus.length === 0 || colFilterStatus.includes(candidate.statusKey);
+      const matchesColOrigin = colFilterOrigin.length === 0 || colFilterOrigin.includes(candidate.origin);
+      
+      let matchesColDate = true;
+      if (colFilterDateRange.from) {
+        const candidateDateParts = candidate.lastActivity.split('/'); // DD/MM/YYYY
+        if (candidateDateParts.length === 3) {
+          const candidateDate = new Date(`${candidateDateParts[2]}-${candidateDateParts[1]}-${candidateDateParts[0]}T00:00:00`);
+          if (colFilterDateRange.to) {
+            matchesColDate = candidateDate >= colFilterDateRange.from && candidateDate <= colFilterDateRange.to;
+          } else {
+            matchesColDate = candidateDate >= colFilterDateRange.from;
+          }
+        }
+      }
+
+      return matchesSearch && matchesOrigin && matchesStage && matchesStatus && matchesLocation && matchesRole && matchesHasVacancies &&
+             matchesColRole && matchesColId && matchesColPhone && matchesColAppCount && matchesColStatus && matchesColOrigin && matchesColDate;
     });
-  }, [enrichedCandidates, searchQuery, filterOrigin, filterStage, filterStatus, filterLocation, filterRole, filterHasVacancies]);
+  }, [enrichedCandidates, searchQuery, filterOrigin, filterStage, filterStatus, filterLocation, filterRole, filterHasVacancies,
+      colFilterRole, colFilterId, colFilterPhone, colFilterAppCount, colFilterStatus, colFilterOrigin, colFilterDateRange]);
+
+  const sortedCandidates = useMemo(() => {
+    let sortableCandidates = [...filteredCandidates];
+    if (sortConfig !== null) {
+      sortableCandidates.sort((a, b) => {
+        let aValue: any = a[sortConfig.key as keyof typeof a];
+        let bValue: any = b[sortConfig.key as keyof typeof b];
+
+        if (sortConfig.key === 'applications') {
+          aValue = a.totalVacanciesCount;
+          bValue = b.totalVacanciesCount;
+        } else if (sortConfig.key === 'status') {
+          aValue = a.statusKey;
+          bValue = b.statusKey;
+        } else if (sortConfig.key === 'lastActivity') {
+          const aParts = a.lastActivity.split('/');
+          const bParts = b.lastActivity.split('/');
+          aValue = new Date(`${aParts[2]}-${aParts[1]}-${aParts[0]}`).getTime();
+          bValue = new Date(`${bParts[2]}-${bParts[1]}-${bParts[0]}`).getTime();
+        } else if (sortConfig.key === 'name') {
+          aValue = a.name;
+          bValue = b.name;
+        }
+
+        if (aValue < bValue) {
+          return sortConfig.direction === 'asc' ? -1 : 1;
+        }
+        if (aValue > bValue) {
+          return sortConfig.direction === 'asc' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableCandidates;
+  }, [filteredCandidates, sortConfig]);
 
   const activeFiltersCount = [
     filterOrigin !== 'all',
@@ -463,66 +556,12 @@ export function CandidatesDashboardPage() {
                   {/* Left Side: Title and count */}
                   <div className="flex flex-col gap-1">
                     <h2 className="text-[22px] font-bold text-gray-900 tracking-tight">Mis candidatos</h2>
-                    <p className="text-[13px] text-gray-500 font-medium">{filteredCandidates.length} candidatos encontrados</p>
+                    <p className="text-[13px] text-gray-500 font-medium">{sortedCandidates.length} candidatos encontrados</p>
                   </div>
 
                   {/* Right Side: Tools & Actions */}
                   <div className="flex items-center gap-3">
-                    {/* Search Input */}
-                    <div className={cn("relative transition-all duration-300 ease-in-out flex items-center justify-end", isSearchExpanded ? "w-[260px]" : "w-9")}>
-                      {!isSearchExpanded ? (
-                        <Tooltip content="Buscar candidatos">
-                          <Button 
-                            variant="ghost" 
-                            size="icon"
-                            onClick={() => setIsSearchExpanded(true)}
-                            className="h-9 w-9 rounded-full text-gray-500 hover:bg-gray-100 transition-all shrink-0"
-                          >
-                            <Search className="w-4 h-4" />
-                          </Button>
-                        </Tooltip>
-                      ) : (
-                        <div className="relative w-full">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                          <input 
-                            type="text" 
-                            placeholder="Buscar candidatos..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            onBlur={() => { if (!searchQuery) setIsSearchExpanded(false); }}
-                            autoFocus
-                            className="w-full pl-9 pr-8 py-2 bg-gray-50/50 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all hover:bg-gray-100/50"
-                          />
-                          <button 
-                            onClick={() => { setIsSearchExpanded(false); setSearchQuery(''); }}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                          >
-                            <X className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="w-px h-6 bg-gray-200 mx-1" />
-
-                    {/* Filter Icon Button */}
-                    <Tooltip content="Filtros">
-                      <Button 
-                        onClick={() => setIsFilterDrawerOpen(true)}
-                        variant="ghost" 
-                        size="icon"
-                        className={cn(
-                          "h-9 w-9 rounded-full text-gray-500 hover:bg-gray-100 transition-all relative",
-                          isFilterDrawerOpen && "bg-gray-100 text-gray-900",
-                          activeFiltersCount > 0 && "text-blue-600 bg-blue-50"
-                        )}
-                      >
-                        <Filter className="w-4 h-4" />
-                        {activeFiltersCount > 0 && (
-                          <span className="absolute top-1 right-1 w-2 h-2 bg-blue-600 rounded-full border border-white" />
-                        )}
-                      </Button>
-                    </Tooltip>
+                    {/* Removed top search bar as requested */}
 
                     {/* Export Button */}
                     <Tooltip content="Exportar">
@@ -533,10 +572,7 @@ export function CandidatesDashboardPage() {
 
                     {/* Serena IA Button */}
                     <Button 
-                      onClick={() => {
-                        setSerenaMode('global');
-                        setIsSerenaOpen(!isSerenaOpen);
-                      }}
+                      onClick={(e) => e.preventDefault()}
                       className="h-9 px-4 rounded-full font-semibold text-[13px] transition-all flex items-center gap-2 shadow-sm bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)] text-white hover:scale-105"
                     >
                       <Sparkles className={cn("w-3.5 h-3.5", !isSerenaOpen && "animate-pulse")} />
@@ -606,18 +642,244 @@ export function CandidatesDashboardPage() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="bg-gray-50/50">
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Candidato</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Identificación</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Celular</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Aplicaciones</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Estado vacante actual</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-center border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Origen</th>
-                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Última actividad</th>
+                      {/* Candidato / Rol */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Candidato
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", searchQuery !== '' && "text-blue-600 bg-blue-50")}><Search className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-3 rounded-lg shadow-lg border border-gray-100" align="start">
+                                <div className="text-xs font-semibold mb-2 px-1 text-gray-500">Buscar Candidato</div>
+                                <Input 
+                                  autoFocus
+                                  value={searchQuery} 
+                                  onChange={(e) => setSearchQuery(e.target.value)} 
+                                  placeholder="Nombre, email o rol..." 
+                                  className="h-8 text-xs" 
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'name' && "text-blue-600")} onClick={() => handleSort('name')}>
+                              {sortConfig?.key === 'name' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Identificación */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Identificación
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", colFilterId !== '' && "text-blue-600 bg-blue-50")}><Search className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-3 rounded-lg shadow-lg border border-gray-100" align="start">
+                                <div className="text-xs font-semibold mb-2 px-1 text-gray-500">Buscar Identificación</div>
+                                <Input 
+                                  autoFocus
+                                  value={colFilterId} 
+                                  onChange={e => setColFilterId(e.target.value)} 
+                                  placeholder="Ej. 1.023..." 
+                                  className="h-8 text-xs" 
+                                />
+                                <div className="flex justify-end mt-2"><Button variant="ghost" size="sm" onClick={() => setColFilterId('')} className="h-6 text-[10px]">Limpiar</Button></div>
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'cedula' && "text-blue-600")} onClick={() => handleSort('cedula')}>
+                              {sortConfig?.key === 'cedula' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Celular */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Celular
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", colFilterPhone !== '' && "text-blue-600 bg-blue-50")}><Search className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-3 rounded-lg shadow-lg border border-gray-100" align="start">
+                                <div className="text-xs font-semibold mb-2 px-1 text-gray-500">Buscar Celular</div>
+                                <Input 
+                                  autoFocus
+                                  value={colFilterPhone} 
+                                  onChange={e => setColFilterPhone(e.target.value)} 
+                                  placeholder="Ej. 300..." 
+                                  className="h-8 text-xs" 
+                                />
+                                <div className="flex justify-end mt-2"><Button variant="ghost" size="sm" onClick={() => setColFilterPhone('')} className="h-6 text-[10px]">Limpiar</Button></div>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Aplicaciones */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)] text-center">
+                        <div className="flex items-center justify-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Aplicaciones
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", (colFilterAppCount[0] > 0 || colFilterAppCount[1] < 10) && "text-blue-600 bg-blue-50")}><ListFilter className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-4 rounded-lg shadow-lg border border-gray-100" align="center">
+                                <div className="text-xs font-semibold mb-4 text-gray-500 flex justify-between">
+                                  <span>Rango aplicaciones</span>
+                                  <span className="text-blue-600 font-bold">{colFilterAppCount[0]} - {colFilterAppCount[1]}</span>
+                                </div>
+                                <Slider
+                                  value={colFilterAppCount}
+                                  onValueChange={setColFilterAppCount}
+                                  max={10}
+                                  min={0}
+                                  step={1}
+                                />
+                                <div className="flex justify-end mt-4"><Button variant="ghost" size="sm" onClick={() => setColFilterAppCount([0, 10])} className="h-6 text-[10px]">Reiniciar</Button></div>
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'applications' && "text-blue-600")} onClick={() => handleSort('applications')}>
+                              {sortConfig?.key === 'applications' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Estado vacante actual */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Estado actual
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", colFilterStatus.length > 0 && "text-blue-600 bg-blue-50")}><ListFilter className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-2.5 rounded-lg shadow-lg border border-gray-100" align="start">
+                                <div className="text-xs font-semibold mb-2.5 px-1.5 text-gray-500">Filtrar por Estado</div>
+                                <div className="space-y-0.5">
+                                  {[
+                                    { value: 'active', label: 'En proceso' },
+                                    { value: 'action_required', label: 'Acción requerida' },
+                                    { value: 'hired', label: 'Contratado' },
+                                    { value: 'rejected', label: 'Descartado' }
+                                  ].map(s => (
+                                    <label key={s.value} className="flex items-center gap-2.5 px-2 py-1.5 hover:bg-gray-50 rounded-md cursor-pointer transition-colors group">
+                                      <Checkbox 
+                                        checked={colFilterStatus.includes(s.value)} 
+                                        onCheckedChange={(checked) => {
+                                          setColFilterStatus(prev => checked ? [...prev, s.value] : prev.filter(v => v !== s.value))
+                                        }} 
+                                        className="mt-0.5"
+                                      />
+                                      <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900">{s.label}</span>
+                                    </label>
+                                  ))}
+                                </div>
+                                {colFilterStatus.length > 0 && (
+                                  <div className="flex justify-end mt-3 px-1">
+                                    <Button variant="ghost" size="sm" onClick={() => setColFilterStatus([])} className="h-6 text-[10px]">Limpiar</Button>
+                                  </div>
+                                )}
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'status' && "text-blue-600")} onClick={() => handleSort('status')}>
+                              {sortConfig?.key === 'status' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Origen */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)] text-center">
+                        <div className="flex items-center justify-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Origen
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", colFilterOrigin.length > 0 && "text-blue-600 bg-blue-50")}><ListFilter className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-56 p-2.5 rounded-lg shadow-lg border border-gray-100" align="start">
+                                <div className="text-xs font-semibold mb-2.5 px-1.5 text-gray-500">Filtrar por Origen</div>
+                                <div className="max-h-[200px] overflow-y-auto pr-1 space-y-0.5 custom-scrollbar">
+                                  {[
+                                    { value: 'serena', label: 'Serena IA' },
+                                    { value: 'vacante', label: 'Vacante' },
+                                    { value: 'cv', label: 'Importado por CV' },
+                                    { value: 'linkedin', label: 'LinkedIn' },
+                                    { value: 'manual', label: 'Manual' }
+                                  ].map(o => (
+                                    <label key={o.value} className="flex items-center gap-2.5 px-2 py-1.5 hover:bg-gray-50 rounded-md cursor-pointer transition-colors group">
+                                      <Checkbox 
+                                        checked={colFilterOrigin.includes(o.value)} 
+                                        onCheckedChange={(checked) => {
+                                          setColFilterOrigin(prev => checked ? [...prev, o.value] : prev.filter(v => v !== o.value))
+                                        }} 
+                                        className="mt-0.5"
+                                      />
+                                      <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900">{o.label}</span>
+                                    </label>
+                                  ))}
+                                </div>
+                                {colFilterOrigin.length > 0 && (
+                                  <div className="flex justify-end mt-3 px-1">
+                                    <Button variant="ghost" size="sm" onClick={() => setColFilterOrigin([])} className="h-6 text-[10px]">Limpiar</Button>
+                                  </div>
+                                )}
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'origin' && "text-blue-600")} onClick={() => handleSort('origin')}>
+                              {sortConfig?.key === 'origin' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Última actividad */}
+                      <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                          Última actividad
+                          <div className="flex items-center">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", (colFilterDateRange.from || colFilterDateRange.to) && "text-blue-600 bg-blue-50")}><CalendarIcon className="h-3.5 w-3.5" /></Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0 rounded-lg shadow-lg border border-gray-100" align="end">
+                                <Calendar
+                                  mode="range"
+                                  selected={colFilterDateRange}
+                                  onSelect={(range: any) => setColFilterDateRange(range || { from: undefined, to: undefined })}
+                                  initialFocus
+                                  locale={es}
+                                />
+                                <div className="p-3 border-t border-gray-100 flex justify-between items-center bg-gray-50 rounded-b-lg">
+                                  <span className="text-[10px] text-gray-500 font-medium">
+                                    {colFilterDateRange.from ? format(colFilterDateRange.from, 'dd MMM', {locale: es}) : 'Inicio'} - {colFilterDateRange.to ? format(colFilterDateRange.to, 'dd MMM', {locale: es}) : 'Fin'}
+                                  </span>
+                                  <Button variant="outline" size="sm" onClick={() => setColFilterDateRange({ from: undefined, to: undefined })} className="h-7 text-[10px] rounded-lg">Limpiar</Button>
+                                </div>
+                              </PopoverContent>
+                            </Popover>
+                            <Button variant="ghost" size="icon" className={cn("h-6 w-6 rounded-md hover:bg-gray-200", sortConfig?.key === 'lastActivity' && "text-blue-600")} onClick={() => handleSort('lastActivity')}>
+                              {sortConfig?.key === 'lastActivity' ? (sortConfig.direction === 'asc' ? <ArrowUp className="h-3.5 w-3.5" /> : <ArrowDown className="h-3.5 w-3.5" />) : <ArrowUpDown className="h-3.5 w-3.5" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </th>
+                      
+                      {/* Acciones */}
                       <th className="sticky top-0 z-20 bg-gray-50/95 backdrop-blur-sm px-6 py-4 text-[13px] font-semibold text-gray-700 text-right border-b border-gray-100 shadow-[inset_0_-1px_0_rgba(0,0,0,0.05)]">Acciones</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
-                    {filteredCandidates.length === 0 ? (
+                    {sortedCandidates.length === 0 ? (
                       <tr>
                         <td colSpan={8} className="px-6 py-20 text-center">
                           <div className="flex flex-col items-center justify-center text-gray-400">
@@ -643,7 +905,7 @@ export function CandidatesDashboardPage() {
                         </td>
                       </tr>
                     ) : (
-                      filteredCandidates.map((candidate) => (
+                      sortedCandidates.map((candidate) => (
                         <tr 
                           key={candidate.id} 
                           onClick={() => handleCandidateClick(candidate.id)}

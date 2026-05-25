@@ -623,9 +623,8 @@ export function JobView({
 
             <div className="flex items-center gap-3">
                 <Button 
-                  onClick={() => {
-                    setSerenaMode('global');
-                    setIsSerenaOpen(!isSerenaOpen);
+                  onClick={(e) => {
+                    e.preventDefault();
                   }}
                   className="h-11 px-6 rounded-full font-semibold text-xs transition-all flex items-center gap-2 shadow-lg bg-[linear-gradient(to_right,#0C5BEF,#8823EA,#EA066F,#FF5416)] text-white hover:scale-105 shadow-indigo-100"
                 >
